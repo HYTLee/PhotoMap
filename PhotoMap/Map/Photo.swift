@@ -7,10 +7,14 @@
 
 import Foundation
 import UIKit
-import CoreLocation
+import RealmSwift
 
-struct Photo {
-    
-    let image: UIImage
-    
+class Contact: Object {
+  @objc dynamic var image = UIImage()
+  @objc dynamic var imageDescription = ""
+  @objc dynamic var latitude = 0.0
+  @objc dynamic var longitude = 0.0
+  @objc dynamic var created = Date()
+  @objc dynamic var category: Category!
 }
+

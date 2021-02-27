@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0316529FCF46F65217EB0897 /* Pods_PhotoMap_PhotoMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */; };
 		8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91B25E81CB70008201A /* AppDelegate.swift */; };
 		8036F91E25E81CB70008201A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91D25E81CB70008201A /* SceneDelegate.swift */; };
 		8036F92025E81CB70008201A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91F25E81CB70008201A /* MapViewController.swift */; };
@@ -21,6 +22,9 @@
 		8036F95F25E81E6A0008201A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F95E25E81E6A0008201A /* MoreViewController.swift */; };
 		8036F96425E820BF0008201A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96325E820BF0008201A /* NavigationController.swift */; };
 		8036F96A25EAA1420008201A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96925EAA1420008201A /* Photo.swift */; };
+		8036F98625EAC1B80008201A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F98525EAC1B80008201A /* Category.swift */; };
+		8518109F8B0EC8C4664D7B46 /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */; };
+		EC6E2DCFAFD022950966ABCD /* Pods_PhotoMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EFED89490321819778BDE72 /* Pods-PhotoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.debug.xcconfig"; sourceTree = "<group>"; };
+		3AA2DB08345EF58BEB678172 /* Pods-PhotoMap-PhotoMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap-PhotoMapUITests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		674FB78FC55166415100C728 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
+		76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap_PhotoMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8036F91825E81CB70008201A /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8036F91B25E81CB70008201A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8036F91D25E81CB70008201A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +71,10 @@
 		8036F95E25E81E6A0008201A /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		8036F96325E820BF0008201A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		8036F96925EAA1420008201A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		8036F98525EAC1B80008201A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.release.xcconfig"; sourceTree = "<group>"; };
+		B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8518109F8B0EC8C4664D7B46 /* Pods_PhotoMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC6E2DCFAFD022950966ABCD /* Pods_PhotoMapTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +98,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0316529FCF46F65217EB0897 /* Pods_PhotoMap_PhotoMapUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40989E4341C468BC900F81AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2EFED89490321819778BDE72 /* Pods-PhotoMap.debug.xcconfig */,
+				674FB78FC55166415100C728 /* Pods-PhotoMap.release.xcconfig */,
+				3AA2DB08345EF58BEB678172 /* Pods-PhotoMap-PhotoMapUITests.debug.xcconfig */,
+				F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */,
+				B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */,
+				899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8036F90F25E81CB70008201A = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +126,8 @@
 				8036F93425E81CBA0008201A /* PhotoMapTests */,
 				8036F93F25E81CBA0008201A /* PhotoMapUITests */,
 				8036F91925E81CB70008201A /* Products */,
+				40989E4341C468BC900F81AF /* Pods */,
+				94FE73B8871B130C535BC6D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,8 +183,19 @@
 			children = (
 				8036F91F25E81CB70008201A /* MapViewController.swift */,
 				8036F96925EAA1420008201A /* Photo.swift */,
+				8036F98525EAC1B80008201A /* Category.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		94FE73B8871B130C535BC6D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */,
+				76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */,
+				10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8036F94525E81CBA0008201A /* Build configuration list for PBXNativeTarget "PhotoMap" */;
 			buildPhases = (
+				8287994CD534E42150D8D67D /* [CP] Check Pods Manifest.lock */,
 				8036F91425E81CB70008201A /* Sources */,
 				8036F91525E81CB70008201A /* Frameworks */,
 				8036F91625E81CB70008201A /* Resources */,
+				DAC3CD488435F7C4A5398A23 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +224,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8036F94825E81CBA0008201A /* Build configuration list for PBXNativeTarget "PhotoMapTests" */;
 			buildPhases = (
+				17A984DB1DE562E2DFDE20CA /* [CP] Check Pods Manifest.lock */,
 				8036F92D25E81CBA0008201A /* Sources */,
 				8036F92E25E81CBA0008201A /* Frameworks */,
 				8036F92F25E81CBA0008201A /* Resources */,
@@ -196,9 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8036F94B25E81CBA0008201A /* Build configuration list for PBXNativeTarget "PhotoMapUITests" */;
 			buildPhases = (
+				76A25D0B4A79DDB7B1CD5296 /* [CP] Check Pods Manifest.lock */,
 				8036F93825E81CBA0008201A /* Sources */,
 				8036F93925E81CBA0008201A /* Frameworks */,
 				8036F93A25E81CBA0008201A /* Resources */,
+				ECBF24FEDF2FE84A5191411C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -279,12 +328,116 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		17A984DB1DE562E2DFDE20CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhotoMapTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76A25D0B4A79DDB7B1CD5296 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhotoMap-PhotoMapUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8287994CD534E42150D8D67D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhotoMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DAC3CD488435F7C4A5398A23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoMap/Pods-PhotoMap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoMap/Pods-PhotoMap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoMap/Pods-PhotoMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECBF24FEDF2FE84A5191411C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8036F91425E81CB70008201A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8036F95F25E81E6A0008201A /* MoreViewController.swift in Sources */,
+				8036F98625EAC1B80008201A /* Category.swift in Sources */,
 				8036F96425E820BF0008201A /* NavigationController.swift in Sources */,
 				8036F92025E81CB70008201A /* MapViewController.swift in Sources */,
 				8036F96A25EAA1420008201A /* Photo.swift in Sources */,
@@ -465,6 +618,7 @@
 		};
 		8036F94625E81CBA0008201A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EFED89490321819778BDE72 /* Pods-PhotoMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -484,6 +638,7 @@
 		};
 		8036F94725E81CBA0008201A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 674FB78FC55166415100C728 /* Pods-PhotoMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -503,6 +658,7 @@
 		};
 		8036F94925E81CBA0008201A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -524,6 +680,7 @@
 		};
 		8036F94A25E81CBA0008201A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -545,6 +702,7 @@
 		};
 		8036F94C25E81CBA0008201A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AA2DB08345EF58BEB678172 /* Pods-PhotoMap-PhotoMapUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -564,6 +722,7 @@
 		};
 		8036F94D25E81CBA0008201A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
