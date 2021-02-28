@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class Contact: Object {
-  @objc dynamic var image = UIImage()
+class Photo: Object {
+  @objc dynamic var imageURL = ""
   @objc dynamic var imageDescription = ""
   @objc dynamic var latitude = 0.0
   @objc dynamic var longitude = 0.0
   @objc dynamic var created = Date()
-  @objc dynamic var category: Category!
+//  @objc dynamic var category: Category!
 }
 
