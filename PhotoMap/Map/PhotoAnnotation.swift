@@ -21,6 +21,6 @@ class PhotoAnnotation: NSObject, MKAnnotation {
     self.text = text
     self.photo = photo
     self.subtitle = photo?.imageDescription
-    self.title = "Category"
+    self.title = photo?.category
   }
 }

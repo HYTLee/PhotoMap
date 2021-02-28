@@ -38,6 +38,7 @@ class PopUpWindow: UIViewController {
         try! realm.write{
             let newPhotoRecord = Photo()
             newPhotoRecord.imageDescription = popUpWindowView.popupTextView.text
+            newPhotoRecord.category = popUpWindowView.category.name
             newPhotoRecord.latitude = currentLocation?.coordinate.latitude ?? 0.0
             newPhotoRecord.longitude = currentLocation?.coordinate.longitude ?? 0.0
             newPhotoRecord.imageURL = imageURL ?? ""

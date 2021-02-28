@@ -10,11 +10,18 @@ import UIKit
 import RealmSwift
 import CoreLocation
 
- class PopUpWindowView: UIView {
+class PopUpWindowView: UIView {
+    
+    var categories = try! Realm().objects(Category.self)
+
+    var category = Category()
+    
+    
     
     let popupView = UIView(frame: CGRect.zero)
     let popupImage = UIImageView(frame: CGRect.zero)
     let popupTextView = UITextView(frame: CGRect.zero)
+    let popupPicker = UIPickerView(frame: CGRect.zero)
     let popupOkButton = UIButton(frame: CGRect.zero)
     let popupCancelButton = UIButton(frame: CGRect.zero)
     let BorderWidth: CGFloat = 2.0
@@ -23,6 +30,7 @@ import CoreLocation
     init() {
         super.init(frame: CGRect.zero)
         
+        categories = try! Realm().objects(Category.self)
         backgroundColor = UIColor.black.withAlphaComponent(0.3)
         popupView.backgroundColor = .black
         popupView.layer.borderWidth = BorderWidth
@@ -50,10 +58,16 @@ import CoreLocation
         popupCancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 23.0, weight: .bold)
         popupCancelButton.backgroundColor = UIColor.black
         
+        popupPicker.dataSource = self
+        popupPicker.delegate = self
+        popupPicker.backgroundColor = .lightGray
+        
+        
         popupView.addSubview(popupImage)
         popupView.addSubview(popupTextView)
         popupView.addSubview(popupOkButton)
         popupView.addSubview(popupCancelButton)
+        popupView.addSubview(popupPicker)
 
         addSubview(popupView)
         
@@ -61,7 +75,7 @@ import CoreLocation
         popupView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupView.widthAnchor.constraint(equalToConstant: 400),
-            popupView.heightAnchor.constraint(equalToConstant: 440),
+            popupView.heightAnchor.constraint(equalToConstant: 540),
             popupView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             popupView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
                     ])
@@ -84,12 +98,20 @@ import CoreLocation
             popupTextView.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
         ])
         
+        popupPicker.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            popupPicker.heightAnchor.constraint(equalToConstant: 100),
+            popupPicker.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 1),
+            popupPicker.topAnchor.constraint(equalTo: popupTextView.bottomAnchor),
+            popupPicker.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
+        ])
+        
         // Ok button constraints
         popupOkButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupOkButton.heightAnchor.constraint(equalToConstant: 40),
             popupOkButton.widthAnchor.constraint(equalToConstant: 140),
-            popupOkButton.topAnchor.constraint(equalTo: popupTextView.bottomAnchor),
+            popupOkButton.topAnchor.constraint(equalTo: popupPicker.bottomAnchor),
             popupOkButton.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
         ])
         
@@ -98,7 +120,7 @@ import CoreLocation
         NSLayoutConstraint.activate([
             popupCancelButton.heightAnchor.constraint(equalToConstant: 40),
             popupCancelButton.widthAnchor.constraint(equalToConstant: 140),
-            popupCancelButton.topAnchor.constraint(equalTo: popupTextView.bottomAnchor),
+            popupCancelButton.topAnchor.constraint(equalTo: popupPicker.bottomAnchor),
             popupCancelButton.trailingAnchor.constraint(equalTo: popupView.trailingAnchor)
         ])
         
@@ -106,6 +128,27 @@ import CoreLocation
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+
+extension PopUpWindowView: UIPickerViewDataSource, UIPickerViewDelegate{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+       return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        categories.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        category.name = categories[row].name
     }
     
 }

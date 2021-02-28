@@ -15,6 +15,6 @@ class Photo: Object {
   @objc dynamic var latitude = 0.0
   @objc dynamic var longitude = 0.0
   @objc dynamic var created = Date()
-//  @objc dynamic var category: Category!
+  @objc dynamic var category = ""
 }
 

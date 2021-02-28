@@ -34,6 +34,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.populateDefaultCategories()
         self.updateAnnotations()
         self.tapHandlerInit()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
 
     }
     
@@ -224,16 +225,32 @@ extension MapViewController: MKMapViewDelegate {
 //        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
 //            annotationView.markerTintColor = UIColor.blue
         
+        
+        
         guard annotation is PhotoAnnotation else { return nil }
 
         let identifier = "Photo"
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-    
-        if annotationView == nil {
 
+        if annotationView == nil {
+            
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
+            
+            switch annotation.title {
+            case "Default":
+                annotationView?.image = UIImage(named: "Default")
+                
+            case "Nature":
+                annotationView?.image = UIImage(named: "Nature")
+
+            case "Friends":
+                annotationView?.image = UIImage(named: "Friends")
+
+            default:
+                annotationView?.image = UIImage(named: "User")
+            }
             
                 let btn = UIButton(type: .detailDisclosure)
                 annotationView?.rightCalloutAccessoryView = btn
