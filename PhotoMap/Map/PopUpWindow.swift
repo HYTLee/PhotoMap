@@ -30,9 +30,6 @@ class PopUpWindow: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
-    
-    
     func addNewPhotoRecord()  {
         let realm = try! Realm()
         try! realm.write{

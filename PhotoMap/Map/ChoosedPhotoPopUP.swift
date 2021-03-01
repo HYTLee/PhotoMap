@@ -31,6 +31,7 @@ class PopUpWindowView: UIView {
         super.init(frame: CGRect.zero)
         
         categories = try! Realm().objects(Category.self)
+        category.name = "Nature"
         backgroundColor = UIColor.black.withAlphaComponent(0.3)
         popupView.backgroundColor = .black
         popupView.layer.borderWidth = BorderWidth

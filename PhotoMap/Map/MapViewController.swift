@@ -11,8 +11,9 @@ import AVFoundation
 import CoreLocation
 import RealmSwift
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, MapViewControllerDelegate {
     
+
     let mapView = MKMapView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
     var locationManager: CLLocationManager?
     var choosedImage: UIImage?
@@ -52,17 +53,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     func setNavigationBar()  {
-        let type = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(openCategories))
+        let type = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(changeTypeOfMap))
         let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(openCamera))
         navigationItem.rightBarButtonItems = [type, camera]
+        
+        let categoryButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(openCategoryViewController))
+        navigationItem.leftBarButtonItem = categoryButton
     }
     
-    @objc func openCategories(){
+    @objc func changeTypeOfMap(){
         
     }
     
     @objc func openCamera(){
         self.openSourceForPhotoAlert(sourceOfLocation: .curentLocation)
+    }
+    
+    @objc func openCategoryViewController(){
+        let categoryViewController = CategoryViewController()
+        categoryViewController.hidesBottomBarWhenPushed = true
+        categoryViewController.delegate = self
+        self.navigationController?.pushViewController(categoryViewController, animated: true)
     }
     
     private func determineCurrentLocation() {
@@ -74,14 +85,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         locationManager?.distanceFilter = 20
        }
     
-   
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last{
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            self.mapView.setRegion(region, animated: true)
-        }
-    }
     private func populateDefaultCategories() {
       if categories.count == 0 {
         try! realm.write() {
@@ -97,6 +100,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         categories = realm.objects(Category.self)
       }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last{
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.mapView.setRegion(region, animated: true)
+        }
+    }
+
     
     func saveImageToLocalStorage(image: UIImage)  {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -125,6 +137,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
             let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
             mapView.addAnnotation(photoAnnotation)
         }
+    }
+    func filterAnnotations(categories: [String]) {
+        mapView.removeAnnotations(mapView.annotations)
+        photos = try! Realm().objects(Photo.self)
+        if categories != [""]{
+            for category in categories {
+                for photo in photos {
+                    if photo.category == category {
+                    let coordinates = CLLocationCoordinate2D(latitude: photo.latitude, longitude: photo.longitude)
+                    let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
+                    mapView.addAnnotation(photoAnnotation)
+                    }
+                }
+            }
+        } else {
+            for photo in photos {
+                let coordinates = CLLocationCoordinate2D(latitude: photo.latitude, longitude: photo.longitude)
+                let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
+                mapView.addAnnotation(photoAnnotation)
+            }
+            
+        }
+     
     }
     
     func tapHandlerInit()  {
@@ -222,11 +257,7 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
 extension MapViewController: MKMapViewDelegate {
     
      func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        let annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "MyMarker")
-//            annotationView.markerTintColor = UIColor.blue
-        
-        
-        
+                
         guard annotation is PhotoAnnotation else { return nil }
 
         let identifier = "Photo"
@@ -238,22 +269,24 @@ extension MapViewController: MKMapViewDelegate {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
             
-            switch annotation.title {
-            case "Default":
-                annotationView?.image = UIImage(named: "Default")
-                
-            case "Nature":
-                annotationView?.image = UIImage(named: "Nature")
-
-            case "Friends":
-                annotationView?.image = UIImage(named: "Friends")
-
-            default:
-                annotationView?.image = UIImage(named: "User")
-            }
+//            switch annotation.title {
+//            case "Default":
+//                annotationView?.image = UIImage(named: "Default")
+//
+//            case "Nature":
+//                annotationView?.image = UIImage(named: "Nature")
+//
+//            case "Friends":
+//                annotationView?.image = UIImage(named: "Friends")
+//
+//            default:
+//                annotationView?.image = UIImage(named: "User")
+//            }
             
-                let btn = UIButton(type: .detailDisclosure)
-                annotationView?.rightCalloutAccessoryView = btn
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "tree")
+            imageView.sizeToFit()
+            annotationView?.leftCalloutAccessoryView = imageView
             } else {
                 annotationView?.annotation = annotation
             }
