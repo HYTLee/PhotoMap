@@ -10,7 +10,7 @@ import RealmSwift
 
 class CategoryViewController: UIViewController {
     
-    let defaults = UserDefaults.standard
+   private let defaults = UserDefaults.standard
     let categoryTableView = UITableView(frame: CGRect.zero)
     var categories = try! Realm().objects(Category.self)
     var choosedCategories = [""]
@@ -61,10 +61,12 @@ class CategoryViewController: UIViewController {
     
     func saveRowsToUserDefaults()  {
         defaults.setValue(choosedRows, forKey: "rows")
+        defaults.setValue(choosedCategories, forKey: "categories")
     }
     
     func readRowsFormUserDefaults()  {
         choosedRows = defaults.object(forKey:"rows") as? [Int] ?? []
+        choosedCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
     }
     
     func setSelectedRowsAfterReloadingViewController()  {

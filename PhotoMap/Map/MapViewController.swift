@@ -13,7 +13,7 @@ import RealmSwift
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, MapViewControllerDelegate {
     
-
+    private let defaults = UserDefaults.standard
     let mapView = MKMapView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
     var locationManager: CLLocationManager?
     var choosedImage: UIImage?
@@ -21,6 +21,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     var fileURL: URL?
     var photos = try! Realm().objects(Photo.self)
     var popUpWindow =  PopUpWindow(image: UIImage(named: "tree")!)
+    var filteredCategories: [String] = [""]
 
 
     
@@ -33,11 +34,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.setNavigationBar()
         self.determineCurrentLocation()
         self.populateDefaultCategories()
-        self.updateAnnotations()
+        self.readRowsFormUserDefaults()
         self.tapHandlerInit()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.updateAnnotations()
+    }
+    
     
     private func setMapView()  {
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +107,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
       }
     }
     
+    private func readRowsFormUserDefaults()  {
+        filteredCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last{
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -132,17 +142,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     func updateAnnotations()  {
         mapView.removeAnnotations(mapView.annotations)
         photos = try! Realm().objects(Photo.self)
-        for photo in photos {
-            let coordinates = CLLocationCoordinate2D(latitude: photo.latitude, longitude: photo.longitude)
-            let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
-            mapView.addAnnotation(photoAnnotation)
-        }
-    }
-    func filterAnnotations(categories: [String]) {
-        mapView.removeAnnotations(mapView.annotations)
-        photos = try! Realm().objects(Photo.self)
-        if categories != [""]{
-            for category in categories {
+        if filteredCategories != [""]{
+            for category in filteredCategories {
                 for photo in photos {
                     if photo.category == category {
                     let coordinates = CLLocationCoordinate2D(latitude: photo.latitude, longitude: photo.longitude)
@@ -157,10 +158,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                 let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
                 mapView.addAnnotation(photoAnnotation)
             }
-            
         }
-     
     }
+        
+    func filterAnnotations(categories: [String]) {
+        mapView.removeAnnotations(mapView.annotations)
+        photos = try! Realm().objects(Photo.self)
+        self.filteredCategories = categories
+        updateAnnotations()
+    }
+     
     
     func tapHandlerInit()  {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleTap))
