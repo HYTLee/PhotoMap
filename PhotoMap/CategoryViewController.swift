@@ -76,7 +76,6 @@ class CategoryViewController: UIViewController {
             }
         }
     }
-
 }
 
 
@@ -88,19 +87,38 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CountryTableViewCell
         categoryCell.categoryNameLabel.text = "\(categories[indexPath.row].name)"
+        switch categoryCell.categoryNameLabel.text {
+        case "Nature":
+            categoryCell.circleView.layer.borderColor = UIColor.green.cgColor
+        case "Friends":
+            categoryCell.circleView.layer.borderColor = UIColor.yellow.cgColor
+        case "Default":
+            categoryCell.circleView.layer.borderColor = UIColor.blue.cgColor
+        default:
+            break
+        }
+        if choosedRows != []{
+            for row in choosedRows {
+                if indexPath.row == row {
+                    categoryCell.circleView.backgroundColor = UIColor(cgColor: categoryCell.circleView.layer.borderColor!)
+                }
+            }
+        }
+        
         return categoryCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = categoryTableView.cellForRow(at: indexPath) as! CountryTableViewCell
+        selectedCell.circleView.backgroundColor = UIColor(cgColor: selectedCell.circleView.layer.borderColor!)
         self.choosedCategories.append(selectedCell.categoryNameLabel.text!)
         self.choosedRows.append(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let deselectedCell = categoryTableView.cellForRow(at: indexPath) as! CountryTableViewCell
+        deselectedCell.circleView.backgroundColor = .white
         self.choosedCategories = choosedCategories.filter(){$0 != deselectedCell.categoryNameLabel.text}
         self.choosedRows = choosedRows.filter(){$0 != indexPath.row}
     }
-
 }

@@ -10,6 +10,8 @@ import UIKit
 class CountryTableViewCell: UITableViewCell {
     
     let categoryNameLabel = UILabel()
+    
+    let circleView = UIView(frame: CGRect(x: 210, y: 10, width: 110, height: 50))
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,6 +20,7 @@ class CountryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
           super.init(style: style, reuseIdentifier: reuseIdentifier)
             self.setCaseLabel()
+            self.setCircleView()
       }
       
       required init?(coder: NSCoder) {
@@ -33,9 +36,30 @@ class CountryTableViewCell: UITableViewCell {
         contentView.addSubview(categoryNameLabel)
         
         NSLayoutConstraint.activate([
-            categoryNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
-            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            categoryNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
+            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
             categoryNameLabel.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    override func prepareForReuse() {
+        circleView.backgroundColor = .white
+    }
+    
+    func setCircleView()  {
+        circleView.translatesAutoresizingMaskIntoConstraints = false
+        circleView.layer.cornerRadius = circleView.frame.size.width/2
+        circleView.backgroundColor = .white
+        circleView.layer.borderWidth = 3
+        circleView.layer.borderColor = UIColor.red.cgColor
+        circleView.clipsToBounds = true
+        contentView.addSubview(circleView)
+
+        NSLayoutConstraint.activate([
+            circleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            circleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            circleView.heightAnchor.constraint(equalToConstant: 50),
+            circleView.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
     

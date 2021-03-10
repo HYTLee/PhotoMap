@@ -22,7 +22,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     var photos = try! Realm().objects(Photo.self)
     var popUpWindow =  PopUpWindow(image: UIImage(named: "tree")!)
     var filteredCategories: [String] = [""]
-
+    
+    var intAd: Int? 
 
     
     let realm = try! Realm()
