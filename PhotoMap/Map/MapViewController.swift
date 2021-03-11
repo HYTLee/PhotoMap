@@ -14,11 +14,12 @@ import RealmSwift
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, MapViewControllerDelegate {
     
     private let defaults = UserDefaults.standard
+    private let imageLoader = ImageLoader()
+    private let imageResizer = ImageResizer()
     let mapView = MKMapView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
     var locationManager: CLLocationManager?
     var choosedImage: UIImage?
     var choosedLocation: CLLocation?
-    var fileURL: URL?
     var photos = try! Realm().objects(Photo.self)
     var popUpWindow =  PopUpWindow(image: UIImage(named: "tree")!)
     var filteredCategories: [String] = [""]
@@ -121,24 +122,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
 
     
-    func saveImageToLocalStorage(image: UIImage)  {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+  
 
-        let fileName = "image\(Date()).jpg"
-        self.fileURL = documentsDirectory.appendingPathComponent(fileName)
-
-        if let data = image.jpegData(compressionQuality:  1.0),
-           !FileManager.default.fileExists(atPath: fileURL!.path) {
-            do {
-                // writes the image data to disk
-                try data.write(to: fileURL!)
-                print("file saved")
-            } catch {
-                print("error saving file:", error)
-            }
-        }
-    }
-    
     
     func updateAnnotations()  {
         mapView.removeAnnotations(mapView.annotations)
@@ -148,16 +133,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
                 for photo in photos {
                     if photo.category == category {
                     let coordinates = CLLocationCoordinate2D(latitude: photo.latitude, longitude: photo.longitude)
-                    let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
+                    let photoAnnotation = PhotoAnnotation(coordinate: coordinates, photo: photo)
                     mapView.addAnnotation(photoAnnotation)
                     }
                 }
-            }
-        } else {
-            for photo in photos {
-                let coordinates = CLLocationCoordinate2D(latitude: photo.latitude, longitude: photo.longitude)
-                let photoAnnotation = PhotoAnnotation(coordinate: coordinates, text: photo.imageDescription, photo: photo)
-                mapView.addAnnotation(photoAnnotation)
             }
         }
     }
@@ -228,12 +207,12 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
                                 info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) { [self] in
             if self.choosedImage != nil {
-                popUpWindow = PopUpWindow(image: ((self.choosedImage ?? UIImage(contentsOfFile: fileURL!.absoluteString))!))
+                popUpWindow = PopUpWindow(image: ((self.choosedImage ?? UIImage(contentsOfFile: imageLoader.fileURL!.absoluteString))!))
                 popUpWindow.popUpWindowView.popupCancelButton.addTarget(self, action: #selector(cancelPopUPWithoutSaving), for: .touchUpInside)
                 popUpWindow.popUpWindowView.popupOkButton.addTarget(self, action: #selector(okActionOnPopUp), for: .touchUpInside)
 
                 popUpWindow.currentLocation = self.choosedLocation
-                popUpWindow.imageURL = self.fileURL?.absoluteString
+                popUpWindow.imageName = imageLoader.fileName
                 self.present(popUpWindow, animated: true, completion: nil)
             }
        
@@ -241,10 +220,10 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.choosedImage = editedImage
-            saveImageToLocalStorage(image: choosedImage!)
+            imageLoader.saveImageToLocalStorage(image: choosedImage!)
         } else if let originImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.choosedImage = originImage
-            saveImageToLocalStorage(image: choosedImage!)
+            imageLoader.saveImageToLocalStorage(image: choosedImage!)
         }
     }
     
@@ -267,41 +246,41 @@ extension MapViewController: MKMapViewDelegate {
      func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
                 
         guard annotation is PhotoAnnotation else { return nil }
+        
+        let photoAnnotation =  annotation as! PhotoAnnotation
 
         let identifier = "Photo"
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-
-        if annotationView == nil {
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)  as? MKMarkerAnnotationView
             
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
+                annotationView?.glyphImage = UIImage()
+                annotationView?.titleVisibility = MKFeatureVisibility.hidden
             
-//            switch annotation.title {
-//            case "Default":
-//                annotationView?.image = UIImage(named: "Default")
-//
-//            case "Nature":
-//                annotationView?.image = UIImage(named: "Nature")
-//
-//            case "Friends":
-//                annotationView?.image = UIImage(named: "Friends")
-//
-//            default:
-//                annotationView?.image = UIImage(named: "User")
-//            }
+           switch photoAnnotation.text {
+            case "Default":
+                annotationView?.markerTintColor = .blue
+           
+            case "Nature":
+            annotationView?.markerTintColor = .green
+
+            case "Friends":
+            annotationView?.markerTintColor = .yellow
+
+            default:
+                annotationView?.markerTintColor = .blue
+            }
             
             let imageView = UIImageView()
-            imageView.image = UIImage(named: "tree")
+            imageView.sizeToFit()
+            let originalImage = imageLoader.loadImageFromDiskWith(fileName: photoAnnotation.photo!.imageName)!
+            let resizedImage = imageResizer.resizeImage(image: originalImage, targetSize: CGSize(width: 70, height: 200))
+            imageView.image = resizedImage
             imageView.sizeToFit()
             annotationView?.leftCalloutAccessoryView = imageView
-            } else {
-                annotationView?.annotation = annotation
-            }
-
+           
             return annotationView
-        }
-    
-
+    }
 }
 

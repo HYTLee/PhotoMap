@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class Photo: Object {
-  @objc dynamic var imageURL = ""
+  @objc dynamic var imageName = ""
   @objc dynamic var imageDescription = ""
   @objc dynamic var latitude = 0.0
   @objc dynamic var longitude = 0.0

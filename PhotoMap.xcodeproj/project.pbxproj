@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0316529FCF46F65217EB0897 /* Pods_PhotoMap_PhotoMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */; };
-		801E36B925F94A07003F6218 /* PhotoAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E36B825F94A07003F6218 /* PhotoAnnotationView.swift */; };
 		8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91B25E81CB70008201A /* AppDelegate.swift */; };
 		8036F91E25E81CB70008201A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91D25E81CB70008201A /* SceneDelegate.swift */; };
 		8036F92025E81CB70008201A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91F25E81CB70008201A /* MapViewController.swift */; };
@@ -31,6 +30,9 @@
 		8036F9AC25ED19630008201A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9AB25ED19630008201A /* CategoryViewController.swift */; };
 		8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */; };
 		8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9B525ED321F0008201A /* MapViewControllerDelegate.swift */; };
+		805D7BC225FA9158005244FB /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC125FA9158005244FB /* ImageLoader.swift */; };
+		805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC625FA9F96005244FB /* ImageResizer.swift */; };
+		805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BCB25FAA93C005244FB /* DateFormatter.swift */; };
 		8518109F8B0EC8C4664D7B46 /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */; };
 		EC6E2DCFAFD022950966ABCD /* Pods_PhotoMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */; };
 /* End PBXBuildFile section */
@@ -59,7 +61,6 @@
 		6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		674FB78FC55166415100C728 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap_PhotoMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		801E36B825F94A07003F6218 /* PhotoAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotationView.swift; sourceTree = "<group>"; };
 		8036F91825E81CB70008201A /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8036F91B25E81CB70008201A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8036F91D25E81CB70008201A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +89,9 @@
 		8036F9AB25ED19630008201A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		8036F9B525ED321F0008201A /* MapViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerDelegate.swift; sourceTree = "<group>"; };
+		805D7BC125FA9158005244FB /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		805D7BC625FA9F96005244FB /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		805D7BCB25FAA93C005244FB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.release.xcconfig"; sourceTree = "<group>"; };
 		B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,7 +177,9 @@
 				8036F96325E820BF0008201A /* NavigationController.swift */,
 				8036F9AB25ED19630008201A /* CategoryViewController.swift */,
 				8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */,
-				801E36B825F94A07003F6218 /* PhotoAnnotationView.swift */,
+				805D7BC125FA9158005244FB /* ImageLoader.swift */,
+				805D7BC625FA9F96005244FB /* ImageResizer.swift */,
+				805D7BCB25FAA93C005244FB /* DateFormatter.swift */,
 			);
 			path = PhotoMap;
 			sourceTree = "<group>";
@@ -462,14 +468,16 @@
 				8036F95F25E81E6A0008201A /* MoreViewController.swift in Sources */,
 				8036F98625EAC1B80008201A /* Category.swift in Sources */,
 				8036F9A225EBB4310008201A /* SourceOfLocation.swift in Sources */,
+				805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */,
 				8036F96425E820BF0008201A /* NavigationController.swift in Sources */,
 				8036F99325EB908A0008201A /* ChoosedPhotoPopUP.swift in Sources */,
 				8036F92025E81CB70008201A /* MapViewController.swift in Sources */,
-				801E36B925F94A07003F6218 /* PhotoAnnotationView.swift in Sources */,
 				8036F96A25EAA1420008201A /* Photo.swift in Sources */,
 				8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */,
+				805D7BC225FA9158005244FB /* ImageLoader.swift in Sources */,
 				8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */,
 				8036F92625E81CB70008201A /* PhotoMap.xcdatamodeld in Sources */,
+				805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */,
 				8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */,
 				8036F99825EBA6F20008201A /* PopUpWindow.swift in Sources */,
 				8036F9AC25ED19630008201A /* CategoryViewController.swift in Sources */,

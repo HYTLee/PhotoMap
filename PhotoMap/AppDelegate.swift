@@ -13,9 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        let defaults = UserDefaults.standard
+        defaults.setValue([0,1,2], forKey: "rows")
+        defaults.setValue(["Nature", "Friends", "Default"], forKey: "categories")
         return true
     }
 

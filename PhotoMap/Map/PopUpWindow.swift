@@ -14,7 +14,7 @@ class PopUpWindow: UIViewController {
     
     let popUpWindowView = PopUpWindowView()
     var currentLocation: CLLocation?
-    var imageURL: String?
+    var imageName: String?
 
     init(image: UIImage) {
         super.init(nibName: nil, bundle: nil)
@@ -38,7 +38,7 @@ class PopUpWindow: UIViewController {
             newPhotoRecord.category = popUpWindowView.category.name
             newPhotoRecord.latitude = currentLocation?.coordinate.latitude ?? 0.0
             newPhotoRecord.longitude = currentLocation?.coordinate.longitude ?? 0.0
-            newPhotoRecord.imageURL = imageURL ?? ""
+            newPhotoRecord.imageName = imageName ?? ""
             realm.add(newPhotoRecord)
           }
     }

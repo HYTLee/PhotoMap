@@ -97,6 +97,8 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
+        
+        categoryCell.categoryNameLabel.textColor = UIColor(cgColor: categoryCell.circleView.layer.borderColor!)
         if choosedRows != []{
             for row in choosedRows {
                 if indexPath.row == row {
