@@ -121,4 +121,8 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         self.choosedCategories = choosedCategories.filter(){$0 != deselectedCell.categoryNameLabel.text}
         self.choosedRows = choosedRows.filter(){$0 != indexPath.row}
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
 }

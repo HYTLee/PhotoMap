@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0316529FCF46F65217EB0897 /* Pods_PhotoMap_PhotoMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */; };
+		801E36B925F94A07003F6218 /* PhotoAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801E36B825F94A07003F6218 /* PhotoAnnotationView.swift */; };
 		8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91B25E81CB70008201A /* AppDelegate.swift */; };
 		8036F91E25E81CB70008201A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91D25E81CB70008201A /* SceneDelegate.swift */; };
 		8036F92025E81CB70008201A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91F25E81CB70008201A /* MapViewController.swift */; };
@@ -58,6 +59,7 @@
 		6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		674FB78FC55166415100C728 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap_PhotoMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		801E36B825F94A07003F6218 /* PhotoAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotationView.swift; sourceTree = "<group>"; };
 		8036F91825E81CB70008201A /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8036F91B25E81CB70008201A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8036F91D25E81CB70008201A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				8036F96325E820BF0008201A /* NavigationController.swift */,
 				8036F9AB25ED19630008201A /* CategoryViewController.swift */,
 				8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */,
+				801E36B825F94A07003F6218 /* PhotoAnnotationView.swift */,
 			);
 			path = PhotoMap;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				8036F96425E820BF0008201A /* NavigationController.swift in Sources */,
 				8036F99325EB908A0008201A /* ChoosedPhotoPopUP.swift in Sources */,
 				8036F92025E81CB70008201A /* MapViewController.swift in Sources */,
+				801E36B925F94A07003F6218 /* PhotoAnnotationView.swift in Sources */,
 				8036F96A25EAA1420008201A /* Photo.swift in Sources */,
 				8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */,
 				8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */,

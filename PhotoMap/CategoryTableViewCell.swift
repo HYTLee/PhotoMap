@@ -11,7 +11,7 @@ class CountryTableViewCell: UITableViewCell {
     
     let categoryNameLabel = UILabel()
     
-    let circleView = UIView(frame: CGRect(x: 210, y: 10, width: 110, height: 50))
+    let circleView = UIView(frame: CGRect(x: 210, y: 10, width: 50, height: 50))
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +37,7 @@ class CountryTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             categoryNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 80),
-            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            categoryNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             categoryNameLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
@@ -48,19 +48,22 @@ class CountryTableViewCell: UITableViewCell {
     
     func setCircleView()  {
         circleView.translatesAutoresizingMaskIntoConstraints = false
-        circleView.layer.cornerRadius = circleView.frame.size.width/2
         circleView.backgroundColor = .white
         circleView.layer.borderWidth = 3
         circleView.layer.borderColor = UIColor.red.cgColor
         circleView.clipsToBounds = true
+        circleView.layer.masksToBounds = true
         contentView.addSubview(circleView)
 
         NSLayoutConstraint.activate([
             circleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            circleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            circleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             circleView.heightAnchor.constraint(equalToConstant: 50),
             circleView.widthAnchor.constraint(equalToConstant: 50)
         ])
+        circleView.layer.cornerRadius = circleView.frame.size.width/2
+
+        
     }
     
 
