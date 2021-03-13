@@ -23,7 +23,7 @@ class PhotoAnnotation: NSObject, MKAnnotation {
     self.coordinate = coordinate
     self.text = photo?.category
     self.photo = photo
-    self.subtitle = dateFormatter.convertDateFormater(photo!.created)
+    self.subtitle = dateFormatter.convertDateToDMYFormat(photo!.created)
     self.title = photo?.imageDescription
   }
 }

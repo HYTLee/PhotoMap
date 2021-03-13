@@ -20,7 +20,7 @@
 		8036F95225E81D4D0008201A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F95125E81D4D0008201A /* TabBarController.swift */; };
 		8036F95A25E81E360008201A /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F95925E81E360008201A /* TimelineViewController.swift */; };
 		8036F95F25E81E6A0008201A /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F95E25E81E6A0008201A /* MoreViewController.swift */; };
-		8036F96425E820BF0008201A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96325E820BF0008201A /* NavigationController.swift */; };
+		8036F96425E820BF0008201A /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96325E820BF0008201A /* MapNavigationController.swift */; };
 		8036F96A25EAA1420008201A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96925EAA1420008201A /* Photo.swift */; };
 		8036F98625EAC1B80008201A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F98525EAC1B80008201A /* Category.swift */; };
 		8036F99325EB908A0008201A /* ChoosedPhotoPopUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F99225EB908A0008201A /* ChoosedPhotoPopUP.swift */; };
@@ -30,9 +30,12 @@
 		8036F9AC25ED19630008201A /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9AB25ED19630008201A /* CategoryViewController.swift */; };
 		8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */; };
 		8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9B525ED321F0008201A /* MapViewControllerDelegate.swift */; };
+		8050AB4E25FB714E00C23C02 /* TimeLineNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050AB4D25FB714E00C23C02 /* TimeLineNavigationController.swift */; };
+		8050AB5625FB8ECB00C23C02 /* TimeLinePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050AB5525FB8ECB00C23C02 /* TimeLinePhoto.swift */; };
 		805D7BC225FA9158005244FB /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC125FA9158005244FB /* ImageLoader.swift */; };
 		805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC625FA9F96005244FB /* ImageResizer.swift */; };
 		805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BCB25FAA93C005244FB /* DateFormatter.swift */; };
+		80DA17E625FBB2BF00DD3E63 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */; };
 		8518109F8B0EC8C4664D7B46 /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */; };
 		EC6E2DCFAFD022950966ABCD /* Pods_PhotoMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */; };
 /* End PBXBuildFile section */
@@ -79,7 +82,7 @@
 		8036F95125E81D4D0008201A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8036F95925E81E360008201A /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		8036F95E25E81E6A0008201A /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
-		8036F96325E820BF0008201A /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		8036F96325E820BF0008201A /* MapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		8036F96925EAA1420008201A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		8036F98525EAC1B80008201A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		8036F99225EB908A0008201A /* ChoosedPhotoPopUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosedPhotoPopUP.swift; sourceTree = "<group>"; };
@@ -89,9 +92,12 @@
 		8036F9AB25ED19630008201A /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		8036F9B525ED321F0008201A /* MapViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerDelegate.swift; sourceTree = "<group>"; };
+		8050AB4D25FB714E00C23C02 /* TimeLineNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineNavigationController.swift; sourceTree = "<group>"; };
+		8050AB5525FB8ECB00C23C02 /* TimeLinePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLinePhoto.swift; sourceTree = "<group>"; };
 		805D7BC125FA9158005244FB /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		805D7BC625FA9F96005244FB /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		805D7BCB25FAA93C005244FB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.release.xcconfig"; sourceTree = "<group>"; };
 		B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,11 +178,11 @@
 				8036F92C25E81CBA0008201A /* Info.plist */,
 				8036F92425E81CB70008201A /* PhotoMap.xcdatamodeld */,
 				8036F95125E81D4D0008201A /* TabBarController.swift */,
-				8036F95925E81E360008201A /* TimelineViewController.swift */,
+				8050AB4625FB70A800C23C02 /* TimeLine */,
 				8036F95E25E81E6A0008201A /* MoreViewController.swift */,
-				8036F96325E820BF0008201A /* NavigationController.swift */,
-				8036F9AB25ED19630008201A /* CategoryViewController.swift */,
-				8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */,
+				80DA17E425FBB26700DD3E63 /* Category */,
+				8050AB5525FB8ECB00C23C02 /* TimeLinePhoto.swift */,
+				8036F96925EAA1420008201A /* Photo.swift */,
 				805D7BC125FA9158005244FB /* ImageLoader.swift */,
 				805D7BC625FA9F96005244FB /* ImageResizer.swift */,
 				805D7BCB25FAA93C005244FB /* DateFormatter.swift */,
@@ -205,8 +211,8 @@
 		8036F96825EAA12D0008201A /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				8036F96325E820BF0008201A /* MapNavigationController.swift */,
 				8036F91F25E81CB70008201A /* MapViewController.swift */,
-				8036F96925EAA1420008201A /* Photo.swift */,
 				8036F98525EAC1B80008201A /* Category.swift */,
 				8036F99225EB908A0008201A /* ChoosedPhotoPopUP.swift */,
 				8036F99725EBA6F20008201A /* PopUpWindow.swift */,
@@ -215,6 +221,25 @@
 				8036F9B525ED321F0008201A /* MapViewControllerDelegate.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		8050AB4625FB70A800C23C02 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				8036F95925E81E360008201A /* TimelineViewController.swift */,
+				8050AB4D25FB714E00C23C02 /* TimeLineNavigationController.swift */,
+				80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		80DA17E425FBB26700DD3E63 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				8036F9AB25ED19630008201A /* CategoryViewController.swift */,
+				8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		94FE73B8871B130C535BC6D6 /* Frameworks */ = {
@@ -466,10 +491,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8036F95F25E81E6A0008201A /* MoreViewController.swift in Sources */,
+				8050AB4E25FB714E00C23C02 /* TimeLineNavigationController.swift in Sources */,
 				8036F98625EAC1B80008201A /* Category.swift in Sources */,
 				8036F9A225EBB4310008201A /* SourceOfLocation.swift in Sources */,
 				805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */,
-				8036F96425E820BF0008201A /* NavigationController.swift in Sources */,
+				8036F96425E820BF0008201A /* MapNavigationController.swift in Sources */,
 				8036F99325EB908A0008201A /* ChoosedPhotoPopUP.swift in Sources */,
 				8036F92025E81CB70008201A /* MapViewController.swift in Sources */,
 				8036F96A25EAA1420008201A /* Photo.swift in Sources */,
@@ -480,9 +506,11 @@
 				805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */,
 				8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */,
 				8036F99825EBA6F20008201A /* PopUpWindow.swift in Sources */,
+				80DA17E625FBB2BF00DD3E63 /* TimelineCell.swift in Sources */,
 				8036F9AC25ED19630008201A /* CategoryViewController.swift in Sources */,
 				8036F95225E81D4D0008201A /* TabBarController.swift in Sources */,
 				8036F9A725EBDABE0008201A /* PhotoAnnotation.swift in Sources */,
+				8050AB5625FB8ECB00C23C02 /* TimeLinePhoto.swift in Sources */,
 				8036F91E25E81CB70008201A /* SceneDelegate.swift in Sources */,
 				8036F95A25E81E360008201A /* TimelineViewController.swift in Sources */,
 			);

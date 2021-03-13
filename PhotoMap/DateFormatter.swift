@@ -9,10 +9,17 @@ import Foundation
 
 class DateFormattering {
  
-    func convertDateFormater(_ date: Date) -> String
+    func convertDateToDMYFormat(_ date: Date) -> String
         {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
+            dateFormatter.dateFormat = "dd-MM-yy"
+            return dateFormatter.string(from: date)
+        }
+    
+    func convertDateToMYFormat(_ date: Date) -> String
+        {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM-yyyy"
             return dateFormatter.string(from: date)
         }
 }

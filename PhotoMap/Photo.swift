@@ -18,3 +18,5 @@ class Photo: Object {
   @objc dynamic var category = ""
 }
 
+
+

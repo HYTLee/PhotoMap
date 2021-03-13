@@ -35,6 +35,7 @@ class CategoryViewController: UIViewController {
         categoryTableView.delegate = self
         categoryTableView.allowsMultipleSelection = true
         categoryTableView.dataSource = self
+        categoryTableView.tableFooterView = UIView()
         self.view.addSubview(categoryTableView)
     
         NSLayoutConstraint.activate([

@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
     }
     
     func addSubviews()  {
-       viewControllers = [NavigationController(), TimelineViewController(), MoreViewController()]
+       viewControllers = [MapNavigationController(), TimeLineNavigationController(), MoreViewController()]
         tabBar.items?[0].title = "Map"
         tabBar.items?[1].title = "Timeline"
         tabBar.items?[2].title = "More..."
