@@ -117,6 +117,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell") as! TimelineCell
         let value = timeLineFilteredPhotos[monthAndYearDates[indexPath.section]]
+        categoryCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         categoryCell.photoDescriptionLabel.text = value?[indexPath.row].photo.imageDescription
         categoryCell.photoView.image = imageLoader.loadImageFromDiskWith(fileName: (value?[indexPath.row].photo.imageName)!)
         categoryCell.photoDateLabel.text = "\(dateFormatter.convertDateToDMYFormat((value?[indexPath.row].photo.created)!)) / \(value?[indexPath.row].photo.category ?? "") "
@@ -134,6 +135,14 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let value = timeLineFilteredPhotos[monthAndYearDates[indexPath.section]]
+        let fullPhotoViewController = FullPhotoViewController()
+        fullPhotoViewController.photo = value?[indexPath.row].photo
+        fullPhotoViewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(fullPhotoViewController, animated: true)
     }
 
 }

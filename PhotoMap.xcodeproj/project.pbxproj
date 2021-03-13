@@ -36,6 +36,9 @@
 		805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC625FA9F96005244FB /* ImageResizer.swift */; };
 		805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BCB25FAA93C005244FB /* DateFormatter.swift */; };
 		80DA17E625FBB2BF00DD3E63 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */; };
+		80DA17EC25FCBC0500DD3E63 /* FullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */; };
+		80DA180125FD0B3600DD3E63 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */; };
+		80DA180625FD1F7F00DD3E63 /* TrackingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA180525FD1F7F00DD3E63 /* TrackingMode.swift */; };
 		8518109F8B0EC8C4664D7B46 /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */; };
 		EC6E2DCFAFD022950966ABCD /* Pods_PhotoMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +101,9 @@
 		805D7BC625FA9F96005244FB /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		805D7BCB25FAA93C005244FB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
+		80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoViewController.swift; sourceTree = "<group>"; };
+		80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
+		80DA180525FD1F7F00DD3E63 /* TrackingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingMode.swift; sourceTree = "<group>"; };
 		899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.release.xcconfig"; sourceTree = "<group>"; };
 		B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 		8036F91A25E81CB70008201A /* PhotoMap */ = {
 			isa = PBXGroup;
 			children = (
+				80DA17FF25FD0B1F00DD3E63 /* Utilities */,
+				80DA17EA25FCBBEA00DD3E63 /* FullPhotoView */,
 				8036F96825EAA12D0008201A /* Map */,
 				8036F91B25E81CB70008201A /* AppDelegate.swift */,
 				8036F91D25E81CB70008201A /* SceneDelegate.swift */,
@@ -219,6 +227,7 @@
 				8036F9A125EBB4310008201A /* SourceOfLocation.swift */,
 				8036F9A625EBDABE0008201A /* PhotoAnnotation.swift */,
 				8036F9B525ED321F0008201A /* MapViewControllerDelegate.swift */,
+				80DA180525FD1F7F00DD3E63 /* TrackingMode.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -240,6 +249,22 @@
 				8036F9B025ED22C00008201A /* CategoryTableViewCell.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		80DA17EA25FCBBEA00DD3E63 /* FullPhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */,
+			);
+			path = FullPhotoView;
+			sourceTree = "<group>";
+		};
+		80DA17FF25FD0B1F00DD3E63 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		94FE73B8871B130C535BC6D6 /* Frameworks */ = {
@@ -501,10 +526,13 @@
 				8036F96A25EAA1420008201A /* Photo.swift in Sources */,
 				8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */,
 				805D7BC225FA9158005244FB /* ImageLoader.swift in Sources */,
+				80DA180625FD1F7F00DD3E63 /* TrackingMode.swift in Sources */,
 				8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */,
+				80DA17EC25FCBC0500DD3E63 /* FullPhotoViewController.swift in Sources */,
 				8036F92625E81CB70008201A /* PhotoMap.xcdatamodeld in Sources */,
 				805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */,
 				8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */,
+				80DA180125FD0B3600DD3E63 /* UIViewExtentions.swift in Sources */,
 				8036F99825EBA6F20008201A /* PopUpWindow.swift in Sources */,
 				80DA17E625FBB2BF00DD3E63 /* TimelineCell.swift in Sources */,
 				8036F9AC25ED19630008201A /* CategoryViewController.swift in Sources */,

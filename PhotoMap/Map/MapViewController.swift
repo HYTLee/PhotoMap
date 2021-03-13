@@ -23,9 +23,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     var photos = try! Realm().objects(Photo.self)
     var popUpWindow =  PopUpWindow(image: UIImage(named: "tree")!)
     var filteredCategories: [String] = [""]
+    let centerOfCurrentLocationImage = UIImageView(frame: CGRect.zero)
+    var trackingMode: TrackingMode = .discover
     
-    var intAd: Int? 
-
+    // Bar button item to change after interraction
+    var followType = UIBarButtonItem()
+    var discoveryType = UIBarButtonItem()
+    var camera = UIBarButtonItem()
     
     let realm = try! Realm()
     lazy var categories: Results<Category> = { self.realm.objects(Category.self) }()
@@ -38,6 +42,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.populateDefaultCategories()
         self.readRowsFormUserDefaults()
         self.tapHandlerInit()
+        self.setLocationCenterImage()
     }
     
     
@@ -58,18 +63,44 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0.0),
         mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0.0)
         ])
+        
+        self.checkForTrackingMode()
     }
     
     func setNavigationBar()  {
-        let type = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(changeTypeOfMap))
-        let camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(openCamera))
-        navigationItem.rightBarButtonItems = [type, camera]
         
+        followType = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(changeTypeOfMap))
+        discoveryType = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(changeTypeOfMap))
+        camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(openCamera))
+        navigationItem.rightBarButtonItems = [discoveryType, camera]
         let categoryButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(openCategoryViewController))
         navigationItem.leftBarButtonItem = categoryButton
     }
     
+    func checkForTrackingMode()  {
+        switch trackingMode {
+        case .follow:
+            centerOfCurrentLocationImage.isHidden = false
+            mapView.isScrollEnabled = false
+            self.determineCurrentLocation()
+        case .discover:
+            centerOfCurrentLocationImage.isHidden = true
+            mapView.isScrollEnabled = true
+        }
+    }
+    
     @objc func changeTypeOfMap(){
+        
+        if trackingMode == .discover {
+            trackingMode = .follow
+            self.checkForTrackingMode()
+            navigationItem.setRightBarButtonItems([followType, camera], animated: false)
+        }
+        else if trackingMode == .follow {
+            trackingMode = .discover
+            self.checkForTrackingMode()
+            navigationItem.setRightBarButtonItems([discoveryType, camera], animated: false)
+        }
         
     }
     
@@ -84,6 +115,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.navigationController?.pushViewController(categoryViewController, animated: true)
     }
     
+    private func setLocationCenterImage() {
+        self.centerOfCurrentLocationImage.translatesAutoresizingMaskIntoConstraints = false
+        self.centerOfCurrentLocationImage.image = UIImage(named: "center")
+        self.centerOfCurrentLocationImage.clipsToBounds = true
+        self.mapView.addSubview(centerOfCurrentLocationImage)
+        
+        NSLayoutConstraint.activate([
+        centerOfCurrentLocationImage.centerYAnchor.constraint(equalTo: self.mapView.centerYAnchor, constant: 0.0),
+        centerOfCurrentLocationImage.centerXAnchor.constraint(equalTo: self.mapView.centerXAnchor, constant: 0.0),
+        centerOfCurrentLocationImage.heightAnchor.constraint(equalToConstant: 20),
+        centerOfCurrentLocationImage.widthAnchor.constraint(equalToConstant: 20)
+        ])
+    }
+    
     private func determineCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
@@ -91,6 +136,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         locationManager?.requestAlwaysAuthorization()
         locationManager?.startUpdatingLocation()
         locationManager?.distanceFilter = 20
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager?.startUpdatingLocation()
+        }
        }
     
     private func populateDefaultCategories() {
@@ -114,15 +163,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if let location = locations.last{
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapView.setRegion(region, animated: true)
         }
-    }
 
-    
-  
+    }
 
     
     func updateAnnotations()  {
@@ -263,10 +311,10 @@ extension MapViewController: MKMapViewDelegate {
                 annotationView?.markerTintColor = .blue
            
             case "Nature":
-            annotationView?.markerTintColor = .green
+                annotationView?.markerTintColor = .green
 
             case "Friends":
-            annotationView?.markerTintColor = .yellow
+                annotationView?.markerTintColor = .yellow
 
             default:
                 annotationView?.markerTintColor = .blue
@@ -282,5 +330,6 @@ extension MapViewController: MKMapViewDelegate {
            
             return annotationView
     }
+
 }
 

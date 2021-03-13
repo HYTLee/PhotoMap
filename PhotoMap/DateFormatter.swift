@@ -22,4 +22,10 @@ class DateFormattering {
             dateFormatter.dateFormat = "MM-yyyy"
             return dateFormatter.string(from: date)
         }
+    
+    func converDateForImagePickerPopUp(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy - HH:mm a"
+        return dateFormatter.string(from: date)
+    }
 }

@@ -34,7 +34,13 @@ class PopUpWindow: UIViewController {
         let realm = try! Realm()
         try! realm.write{
             let newPhotoRecord = Photo()
-            newPhotoRecord.imageDescription = popUpWindowView.popupTextView.text
+            if popUpWindowView.popupTextView.text != "Enter description for you text" && popUpWindowView.popupTextView.textColor != .lightGray {
+                newPhotoRecord.imageDescription = popUpWindowView.popupTextView.text
+            }
+            // Did this to avoid problem with map annotation without text
+            else {
+                newPhotoRecord.imageDescription = " "
+            }
             newPhotoRecord.category = popUpWindowView.category.name
             newPhotoRecord.latitude = currentLocation?.coordinate.latitude ?? 0.0
             newPhotoRecord.longitude = currentLocation?.coordinate.longitude ?? 0.0

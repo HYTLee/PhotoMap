@@ -10,16 +10,17 @@ import UIKit
 import RealmSwift
 import CoreLocation
 
-class PopUpWindowView: UIView {
+class PopUpWindowView: UIView, UITextViewDelegate {
     
     var categories = try! Realm().objects(Category.self)
 
     var category = Category()
     
-    
+    private let dateFormatter = DateFormattering()
     
     let popupView = UIView(frame: CGRect.zero)
     let popupImage = UIImageView(frame: CGRect.zero)
+    let popupDateLabel = UILabel(frame: CGRect.zero)
     let popupTextView = UITextView(frame: CGRect.zero)
     let popupPicker = UIPickerView(frame: CGRect.zero)
     let popupOkButton = UIButton(frame: CGRect.zero)
@@ -33,31 +34,33 @@ class PopUpWindowView: UIView {
         categories = try! Realm().objects(Category.self)
         category.name = "Nature"
         backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        popupView.backgroundColor = .black
+        
+        popupView.backgroundColor = .lightGray
         popupView.layer.borderWidth = BorderWidth
         popupView.layer.masksToBounds = true
         popupView.layer.borderColor = UIColor.gray.cgColor
         
+        popupDateLabel.textColor = .black
+        popupDateLabel.text = dateFormatter.converDateForImagePickerPopUp(Date())
+        
         popupTextView.textColor = UIColor.white
         popupTextView.font = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
-        popupTextView.textAlignment = .center
+        popupTextView.delegate = self
+        popupTextView.text = "Enter description for you text"
+        popupTextView.textColor = UIColor.lightGray
         popupTextView.textAlignment = .left
-        popupTextView.textColor = .black
-//        popupTextView.text = "Enter the story for the photo"
-//        popupTextView.textColor = UIColor.lightGray
-//        popupTextView.becomeFirstResponder()
-//        popupTextView.selectedTextRange = popupTextView.textRange(from: popupTextView.beginningOfDocument, to: popupTextView.beginningOfDocument)
-        
         
         popupOkButton.setTitleColor(UIColor.white, for: .normal)
-        popupOkButton.setTitle("OK", for: .normal)
-        popupOkButton.titleLabel?.font = UIFont.systemFont(ofSize: 23.0, weight: .bold)
-        popupOkButton.backgroundColor = UIColor.black
+        popupOkButton.setTitle("DONE", for: .normal)
+        popupOkButton.setTitleColor(.blue, for: .normal)
+        popupOkButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .bold)
+        popupOkButton.backgroundColor = UIColor.lightGray
         
         popupCancelButton.setTitleColor(UIColor.white, for: .normal)
-        popupCancelButton.setTitle("Cancel", for: .normal)
-        popupCancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 23.0, weight: .bold)
-        popupCancelButton.backgroundColor = UIColor.black
+        popupCancelButton.setTitle("CANCEL", for: .normal)
+        popupCancelButton.setTitleColor(.red, for: .normal)
+        popupCancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .bold)
+        popupCancelButton.backgroundColor = UIColor.lightGray
         
         popupPicker.dataSource = self
         popupPicker.delegate = self
@@ -65,6 +68,7 @@ class PopUpWindowView: UIView {
         
         
         popupView.addSubview(popupImage)
+        popupView.addSubview(popupDateLabel)
         popupView.addSubview(popupTextView)
         popupView.addSubview(popupOkButton)
         popupView.addSubview(popupCancelButton)
@@ -76,7 +80,7 @@ class PopUpWindowView: UIView {
         popupView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupView.widthAnchor.constraint(equalToConstant: 400),
-            popupView.heightAnchor.constraint(equalToConstant: 540),
+            popupView.heightAnchor.constraint(equalToConstant: 580),
             popupView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             popupView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
                     ])
@@ -85,50 +89,67 @@ class PopUpWindowView: UIView {
         popupImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupImage.heightAnchor.constraint(equalToConstant: 300),
-            popupImage.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 1),
-            popupImage.topAnchor.constraint(equalTo: popupView.topAnchor),
-            popupImage.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
+            popupImage.topAnchor.constraint(equalTo: popupView.topAnchor, constant: 5),
+            popupImage.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 5),
+            popupImage.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -5),
+
+        ])
+        
+        // DateLabel constraints
+        popupDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            popupDateLabel.heightAnchor.constraint(equalToConstant: 20),
+            popupDateLabel.topAnchor.constraint(equalTo: popupImage.bottomAnchor, constant: 15),
+            popupDateLabel.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 5),
+            popupDateLabel.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -5),
         ])
         
         // TextView constraints
         popupTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupTextView.heightAnchor.constraint(equalToConstant: 100),
-            popupTextView.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 1),
-            popupTextView.topAnchor.constraint(equalTo: popupImage.bottomAnchor),
-            popupTextView.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
+            popupTextView.topAnchor.constraint(equalTo: popupPicker.bottomAnchor),
+            popupTextView.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 5),
+            popupTextView.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -5),
         ])
         
         popupPicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupPicker.heightAnchor.constraint(equalToConstant: 100),
             popupPicker.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 1),
-            popupPicker.topAnchor.constraint(equalTo: popupTextView.bottomAnchor),
+            popupPicker.topAnchor.constraint(equalTo: popupDateLabel.bottomAnchor),
             popupPicker.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
-        ])
-        
-        // Ok button constraints
-        popupOkButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            popupOkButton.heightAnchor.constraint(equalToConstant: 40),
-            popupOkButton.widthAnchor.constraint(equalToConstant: 140),
-            popupOkButton.topAnchor.constraint(equalTo: popupPicker.bottomAnchor),
-            popupOkButton.leadingAnchor.constraint(equalTo: popupView.leadingAnchor)
         ])
         
         // Cancel button constraints
         popupCancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupCancelButton.heightAnchor.constraint(equalToConstant: 40),
-            popupCancelButton.widthAnchor.constraint(equalToConstant: 140),
-            popupCancelButton.topAnchor.constraint(equalTo: popupPicker.bottomAnchor),
-            popupCancelButton.trailingAnchor.constraint(equalTo: popupView.trailingAnchor)
+            popupCancelButton.widthAnchor.constraint(equalToConstant: 120),
+            popupCancelButton.topAnchor.constraint(equalTo: popupTextView.bottomAnchor),
+            popupCancelButton.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: 40)
+        ])
+        
+        // Ok button constraints
+        popupOkButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            popupOkButton.heightAnchor.constraint(equalToConstant: 40),
+            popupOkButton.widthAnchor.constraint(equalToConstant: 120),
+            popupOkButton.topAnchor.constraint(equalTo: popupTextView.bottomAnchor),
+            popupOkButton.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -40)
         ])
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+                textView.text = nil
+                textView.textColor = UIColor.black
+            }
     }
     
 }
