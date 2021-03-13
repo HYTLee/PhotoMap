@@ -28,4 +28,18 @@ class DateFormattering {
         dateFormatter.dateFormat = "MMMM dd, yyyy - HH:mm a"
         return dateFormatter.string(from: date)
     }
+    
+    func converDateForFullPhotoScreenFirstPart(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        return dateFormatter.string(from: date)
+    }
+    
+    
+    func converDateForFullPhotoScreenSecondPart(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm a"
+        return dateFormatter.string(from: date)
+    }
 }
+

@@ -48,6 +48,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.readRowsFormUserDefaults()
         self.updateAnnotations()
     }
     
@@ -308,17 +309,17 @@ extension MapViewController: MKMapViewDelegate {
             
            switch photoAnnotation.text {
             case "Default":
-                annotationView?.markerTintColor = .blue
+                annotationView?.markerTintColor = UIColor(hex: "#368edfff")
            
             case "Nature":
-                annotationView?.markerTintColor = .green
+                annotationView?.markerTintColor = UIColor(hex: "#578e18ff")
 
             case "Friends":
-                annotationView?.markerTintColor = .yellow
-
+                annotationView?.markerTintColor = UIColor(hex: "#F4a523ff")
             default:
                 annotationView?.markerTintColor = .blue
             }
+        
             
             let imageView = UIImageView()
             imageView.sizeToFit()

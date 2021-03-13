@@ -42,7 +42,10 @@ class FullPhotoViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         // Restore the navigation bar to default
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.systemBlue
+        self.navigationController?.navigationBar.barTintColor = UIColor(white: 1, alpha: 1)
+        self.navigationController?.navigationBar.isTranslucent = false
+
 
     }
     
@@ -111,7 +114,7 @@ class FullPhotoViewController: UIViewController {
         self.viewForDescription.addSubview(dateLabel)
         self.dateLabel.numberOfLines = 1
         self.dateLabel.textColor = .white
-        self.dateLabel.text = dateFormatter.convertDateToDMYFormat(photo!.created)
+        self.dateLabel.text = "\(dateFormatter.converDateForFullPhotoScreenFirstPart(self.photo!.created)) at \(dateFormatter.converDateForFullPhotoScreenSecondPart(self.photo!.created))"
         
         NSLayoutConstraint.activate([
             dateLabel.leadingAnchor.constraint(equalTo: self.viewForDescription.leadingAnchor, constant: 20),

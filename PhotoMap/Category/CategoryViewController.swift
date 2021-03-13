@@ -90,11 +90,11 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         categoryCell.categoryNameLabel.text = "\(categories[indexPath.row].name)"
         switch categoryCell.categoryNameLabel.text {
         case "Nature":
-            categoryCell.circleView.layer.borderColor = UIColor.green.cgColor
+            categoryCell.circleView.layer.borderColor = UIColor(hex: "#578e18ff")?.cgColor
         case "Friends":
-            categoryCell.circleView.layer.borderColor = UIColor.yellow.cgColor
+            categoryCell.circleView.layer.borderColor = UIColor(hex: "#F4a523ff")?.cgColor
         case "Default":
-            categoryCell.circleView.layer.borderColor = UIColor.blue.cgColor
+            categoryCell.circleView.layer.borderColor = UIColor(hex: "#368edfff")?.cgColor
         default:
             break
         }

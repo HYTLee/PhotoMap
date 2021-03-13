@@ -39,6 +39,7 @@
 		80DA17EC25FCBC0500DD3E63 /* FullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */; };
 		80DA180125FD0B3600DD3E63 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */; };
 		80DA180625FD1F7F00DD3E63 /* TrackingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA180525FD1F7F00DD3E63 /* TrackingMode.swift */; };
+		80DA180B25FD391400DD3E63 /* UIColorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA180A25FD391400DD3E63 /* UIColorExtentions.swift */; };
 		8518109F8B0EC8C4664D7B46 /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */; };
 		EC6E2DCFAFD022950966ABCD /* Pods_PhotoMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DC13EE14FC2FFCC82C7F6D /* Pods_PhotoMapTests.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoViewController.swift; sourceTree = "<group>"; };
 		80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
 		80DA180525FD1F7F00DD3E63 /* TrackingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingMode.swift; sourceTree = "<group>"; };
+		80DA180A25FD391400DD3E63 /* UIColorExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtentions.swift; sourceTree = "<group>"; };
 		899F010290962665D3DBD852 /* Pods-PhotoMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.release.xcconfig"; sourceTree = "<group>"; };
 		B96A9F04A5D735ABCAD64B6F /* Pods-PhotoMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMapTests.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMapTests/Pods-PhotoMapTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F20FD720064B6CE9CEA87471 /* Pods-PhotoMap-PhotoMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap-PhotoMapUITests/Pods-PhotoMap-PhotoMapUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */,
+				80DA180A25FD391400DD3E63 /* UIColorExtentions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */,
 				805D7BC225FA9158005244FB /* ImageLoader.swift in Sources */,
 				80DA180625FD1F7F00DD3E63 /* TrackingMode.swift in Sources */,
+				80DA180B25FD391400DD3E63 /* UIColorExtentions.swift in Sources */,
 				8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */,
 				80DA17EC25FCBC0500DD3E63 /* FullPhotoViewController.swift in Sources */,
 				8036F92625E81CB70008201A /* PhotoMap.xcdatamodeld in Sources */,

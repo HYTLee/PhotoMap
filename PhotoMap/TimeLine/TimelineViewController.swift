@@ -12,11 +12,12 @@ import RealmSwift
 class TimelineViewController: UIViewController {
     
     private let imageLoader = ImageLoader()
-    lazy private var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 250, height: 20))
+    private var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 250, height: 20))
 
     private let defaults = UserDefaults.standard
     private var filteredCategories: [String] = [""]
-    private var photos = try! Realm().objects(Photo.self)
+    private var photosFromReal = try! Realm().objects(Photo.self)
+    private var photos:[Photo] = []
     private let timeLineTableView = UITableView(frame: CGRect.zero)
     private let dateFormatter = DateFormattering()
     var photosForTimeLine: [TimeLinePhoto] = []
@@ -32,13 +33,16 @@ class TimelineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.appendPhotosArray()
         self.fullFilltimeLinePhotos()
         self.filterPhotosForTimeLine()
         self.timeLineTableView.reloadData()
         }
     
     private func setSearchBar() {
-        self.searchBar.placeholder = "Filter by hashtag"
+        self.searchBar.placeholder = "Filter photos"
+        self.searchBar.delegate = self
+
     }
     
     private func fullFilltimeLinePhotos(){
@@ -71,6 +75,14 @@ class TimelineViewController: UIViewController {
         let categoryViewController = CategoryViewController()
         categoryViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(categoryViewController, animated: true)
+    }
+    
+    func appendPhotosArray()  {
+        photos = []
+        for photo in photosFromReal {
+            photos.append(photo)
+        }
+        photos.sort { $0.created > $1.created }
     }
     
     func setTableView()  {
@@ -116,11 +128,16 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell") as! TimelineCell
-        let value = timeLineFilteredPhotos[monthAndYearDates[indexPath.section]]
-        categoryCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        categoryCell.photoDescriptionLabel.text = value?[indexPath.row].photo.imageDescription
-        categoryCell.photoView.image = imageLoader.loadImageFromDiskWith(fileName: (value?[indexPath.row].photo.imageName)!)
-        categoryCell.photoDateLabel.text = "\(dateFormatter.convertDateToDMYFormat((value?[indexPath.row].photo.created)!)) / \(value?[indexPath.row].photo.category ?? "") "
+        DispatchQueue.global().async { [self] in
+            let value = timeLineFilteredPhotos[self.monthAndYearDates[indexPath.section]]
+            DispatchQueue.main.async {
+                categoryCell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+                categoryCell.photoDescriptionLabel.text = value?[indexPath.row].photo.imageDescription
+                categoryCell.photoView.image = imageLoader.loadImageFromDiskWith(fileName: (value?[indexPath.row].photo.imageName)!)
+                categoryCell.photoDateLabel.text = "\(dateFormatter.convertDateToDMYFormat((value?[indexPath.row].photo.created)!)) / \(value?[indexPath.row].photo.category ?? "") "
+            }
+        }
+    
         return categoryCell
     }
     
@@ -144,5 +161,25 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         fullPhotoViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(fullPhotoViewController, animated: true)
     }
+}
 
+extension TimelineViewController: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            self.appendPhotosArray()
+            photos = photos.filter{ $0.imageDescription.contains(searchText)
+            }
+            self.fullFilltimeLinePhotos()
+            self.filterPhotosForTimeLine()
+            self.timeLineTableView.reloadData()
+        }
+        else {
+            self.appendPhotosArray()
+            self.fullFilltimeLinePhotos()
+            self.filterPhotosForTimeLine()
+            self.timeLineTableView.reloadData()
+        }
+        }
+    
 }
