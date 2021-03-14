@@ -9,12 +9,16 @@ import Foundation
 import UIKit
 import RealmSwift
 import CoreLocation
+import FirebaseDatabase
 
 class PopUpWindow: UIViewController {
     
+    private let database = Database.database().reference()
     let popUpWindowView = PopUpWindowView()
+    let dateFormatter = DateFormattering()
     var currentLocation: CLLocation?
     var imageName: String?
+    var keysForFirebase: [String] = []
 
     init(image: UIImage) {
         super.init(nibName: nil, bundle: nil)
@@ -30,7 +34,7 @@ class PopUpWindow: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addNewPhotoRecord()  {
+    func addNewPhotoRecordToRealm()  {
         let realm = try! Realm()
         try! realm.write{
             let newPhotoRecord = Photo()
@@ -48,5 +52,20 @@ class PopUpWindow: UIViewController {
             realm.add(newPhotoRecord)
           }
     }
-  
+    
+    func addNewPhotoToFirebase()  {
+        let uuid = UUID().uuidString
+        
+        self.saveKey(keyToPhoto: uuid)
+        
+        let newPhotoRecord: [String: Any] = [
+            "imageName": imageName ?? "",
+            "imageDescription": popUpWindowView.popupTextView.text ?? "",
+            "latitude": currentLocation?.coordinate.latitude ?? 0.0,
+            "longitude": currentLocation?.coordinate.longitude ?? 0.0,
+            "created": dateFormatter.converDateForFirebase(Date()),
+            "category" : popUpWindowView.category.name
+        ]
+        database.child(uuid).setValue(newPhotoRecord)
+    }
 }

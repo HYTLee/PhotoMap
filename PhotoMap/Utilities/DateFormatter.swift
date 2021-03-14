@@ -41,5 +41,11 @@ class DateFormattering {
         dateFormatter.dateFormat = "HH:mm a"
         return dateFormatter.string(from: date)
     }
+    
+    func converDateForFirebase(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy - HH:mm a"
+        return dateFormatter.string(from: date)
+    }
 }
 

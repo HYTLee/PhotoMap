@@ -7,6 +7,8 @@ target 'PhotoMap' do
 
   # Pods for PhotoMap
     pod 'RealmSwift'
+    pod'Firebase/Core'
+    pod 'Firebase/Database'
 
 
   target 'PhotoMapTests' do

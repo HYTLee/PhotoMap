@@ -109,7 +109,6 @@ class TimelineViewController: UIViewController {
             var timeLinePhotos = timeLineFilteredPhotos[photo.creationMonthAndYear] ?? []
             if timeLinePhotos.count == 0 {
                 monthAndYearDates.append(photo.creationMonthAndYear)
-                monthAndYearDates.reverse()
                 timeLineFilteredPhotos[photo.creationMonthAndYear] = [photo]
           } else {
             timeLinePhotos.append(photo)

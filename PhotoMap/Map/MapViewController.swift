@@ -69,7 +69,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     func setNavigationBar()  {
-        
         followType = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(changeTypeOfMap))
         discoveryType = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(changeTypeOfMap))
         camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(openCamera))
@@ -281,7 +280,8 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     }
     
     @objc func okActionOnPopUp(){
-        popUpWindow.addNewPhotoRecord()
+        popUpWindow.addNewPhotoRecordToRealm()
+        popUpWindow.addNewPhotoToFirebase()
         self.updateAnnotations()
         self.dismiss(animated: true, completion: nil)
     }
