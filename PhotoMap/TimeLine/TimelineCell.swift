@@ -7,11 +7,13 @@
 
 import UIKit
 
+
+// Cell for timeline table view
 class TimelineCell: UITableViewCell {
 
+    //MARK: Set variables
     let photoDescriptionLabel = UILabel()
     let photoDateLabel = UILabel()
-
     let photoView = UIImageView(frame: CGRect(x: 210, y: 10, width: 50, height: 50))
 
     override func awakeFromNib() {
@@ -33,6 +35,7 @@ class TimelineCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    //MARK: Set all UI elements and their constraints
     func setPhotoDescriptionLabel() {
         photoDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(photoDescriptionLabel)

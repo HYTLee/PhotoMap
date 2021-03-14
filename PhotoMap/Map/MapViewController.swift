@@ -13,6 +13,8 @@ import RealmSwift
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, MapViewControllerDelegate {
     
+    
+    // MARK: Setting all variables
     private let defaults = UserDefaults.standard
     private let imageLoader = ImageLoader()
     private let imageResizer = ImageResizer()
@@ -52,7 +54,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.updateAnnotations()
     }
     
-    
+    // MARK: Setting all UI items and constraints
     private func setMapView()  {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mapView)
@@ -75,33 +77,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         navigationItem.rightBarButtonItems = [discoveryType, camera]
         let categoryButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(openCategoryViewController))
         navigationItem.leftBarButtonItem = categoryButton
-    }
-    
-    func checkForTrackingMode()  {
-        switch trackingMode {
-        case .follow:
-            centerOfCurrentLocationImage.isHidden = false
-            mapView.isScrollEnabled = false
-            self.determineCurrentLocation()
-        case .discover:
-            centerOfCurrentLocationImage.isHidden = true
-            mapView.isScrollEnabled = true
-        }
-    }
-    
-    @objc func changeTypeOfMap(){
-        
-        if trackingMode == .discover {
-            trackingMode = .follow
-            self.checkForTrackingMode()
-            navigationItem.setRightBarButtonItems([followType, camera], animated: false)
-        }
-        else if trackingMode == .follow {
-            trackingMode = .discover
-            self.checkForTrackingMode()
-            navigationItem.setRightBarButtonItems([discoveryType, camera], animated: false)
-        }
-        
     }
     
     @objc func openCamera(){
@@ -129,6 +104,48 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         ])
     }
     
+    // MARK: Set  gestures
+    func tapHandlerInit()  {
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleTap))
+            gestureRecognizer.delegate = self
+            mapView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
+        let location = gestureRecognizer.location(in: mapView)
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        self.choosedLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        openSourceForPhotoAlert(sourceOfLocation: .mapAnnotation)
+    }
+    
+    // MARK: Set tracking mode
+    func checkForTrackingMode()  {
+        switch trackingMode {
+        case .follow:
+            centerOfCurrentLocationImage.isHidden = false
+            mapView.isScrollEnabled = false
+            self.determineCurrentLocation()
+        case .discover:
+            centerOfCurrentLocationImage.isHidden = true
+            mapView.isScrollEnabled = true
+        }
+    }
+    
+    @objc func changeTypeOfMap(){
+        if trackingMode == .discover {
+            trackingMode = .follow
+            self.checkForTrackingMode()
+            navigationItem.setRightBarButtonItems([followType, camera], animated: false)
+        }
+    else if trackingMode == .follow {
+            trackingMode = .discover
+            self.checkForTrackingMode()
+            navigationItem.setRightBarButtonItems([discoveryType, camera], animated: false)
+        }
+    }
+    
+    
+    // MARK: Set location manager and setup location
     private func determineCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
@@ -142,6 +159,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         }
        }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last{
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            self.mapView.setRegion(region, animated: true)
+        }
+    }
+
+    
+    // MARK: Working with user defaults
     private func populateDefaultCategories() {
       if categories.count == 0 {
         try! realm.write() {
@@ -162,17 +189,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         filteredCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if let location = locations.last{
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            self.mapView.setRegion(region, animated: true)
-        }
-
-    }
-
-    
+    // MARK: Working with map annotations
     func updateAnnotations()  {
         mapView.removeAnnotations(mapView.annotations)
         photos = try! Realm().objects(Photo.self)
@@ -195,24 +212,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.filteredCategories = categories
         updateAnnotations()
     }
-     
     
-    func tapHandlerInit()  {
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleTap))
-            gestureRecognizer.delegate = self
-            mapView.addGestureRecognizer(gestureRecognizer)
-    }
-    
-    @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
-        
-        let location = gestureRecognizer.location(in: mapView)
-        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        self.choosedLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        
-        openSourceForPhotoAlert(sourceOfLocation: .mapAnnotation)
-    }
-    
-    
+    // MARK: Working with photo chooser
     func openSourceForPhotoAlert(sourceOfLocation: SourceOfLocation)  {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let openCameraButton = UIAlertAction(title: "Open Camera", style: .default) { (_) in
@@ -234,8 +235,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
 }
 
+
+
 extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
+    // MARK: Working with image picker
     func showImagePickerController(sourceType: UIImagePickerController.SourceType, sourceOfLocation: SourceOfLocation)  {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -245,11 +248,9 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
         case .curentLocation:
             choosedLocation = locationManager?.location
         case .mapAnnotation: break
-            
         }
         present(imagePickerController, animated: true, completion: nil)
     }
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo
                                 info: [UIImagePickerController.InfoKey : Any]) {
@@ -281,7 +282,9 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     
     @objc func okActionOnPopUp(){
         popUpWindow.addNewPhotoRecordToRealm()
-        popUpWindow.addNewPhotoToFirebase()
+        DispatchQueue.global(qos: .utility).async { [self] in
+            popUpWindow.addNewPhotoToFirebase()
+        }
         self.updateAnnotations()
         self.dismiss(animated: true, completion: nil)
     }
@@ -289,17 +292,13 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     
 }
 
-
+// MARK: MapKit settings
 extension MapViewController: MKMapViewDelegate {
     
      func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-                
         guard annotation is PhotoAnnotation else { return nil }
-        
         let photoAnnotation =  annotation as! PhotoAnnotation
-
         let identifier = "Photo"
-        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)  as? MKMarkerAnnotationView
             
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
@@ -310,10 +309,8 @@ extension MapViewController: MKMapViewDelegate {
            switch photoAnnotation.text {
             case "Default":
                 annotationView?.markerTintColor = UIColor(hex: "#368edfff")
-           
             case "Nature":
                 annotationView?.markerTintColor = UIColor(hex: "#578e18ff")
-
             case "Friends":
                 annotationView?.markerTintColor = UIColor(hex: "#F4a523ff")
             default:

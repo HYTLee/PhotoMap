@@ -12,7 +12,7 @@ class ImageLoader {
     var fileName = ""
     var fileURL: URL?
 
-    
+    // Saving image to local storage
     func saveImageToLocalStorage(image: UIImage)  {
       guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
 
@@ -26,22 +26,18 @@ class ImageLoader {
                 } catch let removeError {
                     print("couldn't remove file at path", removeError)
                 }
-
             }
-
             do {
                 try data.write(to: fileURL!)
                 print("File saved")
             } catch let error {
                 print("error saving file with error", error)
             }
-
         }
     
+    // Load image from local storage 
     func loadImageFromDiskWith(fileName: String) -> UIImage? {
-
       let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
-
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
         let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
 
@@ -52,6 +48,5 @@ class ImageLoader {
         }
         return nil
     }
-
     
 }

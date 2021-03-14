@@ -7,8 +7,10 @@
 
 import UIKit
 
+// View that appears while user chooses cell in timeline table view 
 class FullPhotoViewController: UIViewController {
     
+    // MARK: setting variables
     let fullPhotoImageView = UIImageView(frame: CGRect.zero)
     let viewForDescription = UIView(frame: CGRect.zero)
     let scrollView = UIScrollView(frame: CGRect.zero)
@@ -49,6 +51,7 @@ class FullPhotoViewController: UIViewController {
 
     }
     
+    // MARK: Setting all UI elements and constraints
     private func setScrollView(){
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(scrollView)
@@ -66,11 +69,13 @@ class FullPhotoViewController: UIViewController {
     }
     
     private func setFullPhotoImage(){
-        
+        self.fullPhotoImageView.sizeToFit()
         self.fullPhotoImageView.translatesAutoresizingMaskIntoConstraints = false
         self.scrollView.addSubview(fullPhotoImageView)
         self.fullPhotoImageView.backgroundColor = .gray
-        self.fullPhotoImageView.image = imageLoader.loadImageFromDiskWith(fileName: photo!.imageName)
+        if photo?.imageName != nil {
+            self.fullPhotoImageView.image = imageLoader.loadImageFromDiskWith(fileName: photo?.imageName ?? "")
+        }
         self.fullPhotoImageView.addTapGesture(tapNumber: 1, target: self, action: #selector(handleTap))
         
         NSLayoutConstraint.activate([
@@ -114,7 +119,7 @@ class FullPhotoViewController: UIViewController {
         self.viewForDescription.addSubview(dateLabel)
         self.dateLabel.numberOfLines = 1
         self.dateLabel.textColor = .white
-        self.dateLabel.text = "\(dateFormatter.converDateForFullPhotoScreenFirstPart(self.photo!.created)) at \(dateFormatter.converDateForFullPhotoScreenSecondPart(self.photo!.created))"
+        self.dateLabel.text = "\(dateFormatter.converDateForFullPhotoScreenFirstPart(self.photo?.created ?? Date())) at \(dateFormatter.converDateForFullPhotoScreenSecondPart(self.photo?.created ?? Date()))"
         
         NSLayoutConstraint.activate([
             dateLabel.leadingAnchor.constraint(equalTo: self.viewForDescription.leadingAnchor, constant: 20),
@@ -124,7 +129,7 @@ class FullPhotoViewController: UIViewController {
         ])
     }
     
-    
+    // Hide all view except image view by taping on image view 
     @objc func handleTap() {
         switch viewForDescription.isHidden {
         case true:

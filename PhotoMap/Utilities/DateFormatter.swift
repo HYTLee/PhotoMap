@@ -7,21 +7,20 @@
 
 import Foundation
 
+// Date formatters used i aplication
 class DateFormattering {
  
-    func convertDateToDMYFormat(_ date: Date) -> String
-        {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yy"
-            return dateFormatter.string(from: date)
-        }
+    func convertDateToDMYFormat(_ date: Date) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yy"
+        return dateFormatter.string(from: date)
+    }
     
-    func convertDateToMYFormat(_ date: Date) -> String
-        {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM-yyyy"
-            return dateFormatter.string(from: date)
-        }
+    func convertDateToMYFormat(_ date: Date) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-yyyy"
+        return dateFormatter.string(from: date)
+    }
     
     func converDateForImagePickerPopUp(_ date: Date) -> String {
         let dateFormatter = DateFormatter()

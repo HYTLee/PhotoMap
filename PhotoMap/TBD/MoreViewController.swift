@@ -7,6 +7,8 @@
 
 import UIKit
 
+// This view controller isn't described in the task
+
 class MoreViewController: UIViewController {
 
     override func viewDidLoad() {

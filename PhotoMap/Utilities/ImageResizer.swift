@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// Image resizer for time line table view 
 class ImageResizer {
     
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {

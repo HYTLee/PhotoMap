@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// navigation controller of timeline
 class TimeLineNavigationController: UINavigationController {
 
     override func viewDidLoad() {

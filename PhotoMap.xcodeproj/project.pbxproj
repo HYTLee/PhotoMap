@@ -23,7 +23,7 @@
 		8036F96425E820BF0008201A /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96325E820BF0008201A /* MapNavigationController.swift */; };
 		8036F96A25EAA1420008201A /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F96925EAA1420008201A /* Photo.swift */; };
 		8036F98625EAC1B80008201A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F98525EAC1B80008201A /* Category.swift */; };
-		8036F99325EB908A0008201A /* ChoosedPhotoPopUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F99225EB908A0008201A /* ChoosedPhotoPopUP.swift */; };
+		8036F99325EB908A0008201A /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F99225EB908A0008201A /* PopUpWindowView.swift */; };
 		8036F99825EBA6F20008201A /* PopUpWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F99725EBA6F20008201A /* PopUpWindow.swift */; };
 		8036F9A225EBB4310008201A /* SourceOfLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9A125EBB4310008201A /* SourceOfLocation.swift */; };
 		8036F9A725EBDABE0008201A /* PhotoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F9A625EBDABE0008201A /* PhotoAnnotation.swift */; };
@@ -90,7 +90,7 @@
 		8036F96325E820BF0008201A /* MapNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		8036F96925EAA1420008201A /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		8036F98525EAC1B80008201A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		8036F99225EB908A0008201A /* ChoosedPhotoPopUP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosedPhotoPopUP.swift; sourceTree = "<group>"; };
+		8036F99225EB908A0008201A /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
 		8036F99725EBA6F20008201A /* PopUpWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindow.swift; sourceTree = "<group>"; };
 		8036F9A125EBB4310008201A /* SourceOfLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceOfLocation.swift; sourceTree = "<group>"; };
 		8036F9A625EBDABE0008201A /* PhotoAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAnnotation.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				8036F96325E820BF0008201A /* MapNavigationController.swift */,
 				8036F91F25E81CB70008201A /* MapViewController.swift */,
 				8036F98525EAC1B80008201A /* Category.swift */,
-				8036F99225EB908A0008201A /* ChoosedPhotoPopUP.swift */,
+				8036F99225EB908A0008201A /* PopUpWindowView.swift */,
 				8036F99725EBA6F20008201A /* PopUpWindow.swift */,
 				8036F9A125EBB4310008201A /* SourceOfLocation.swift */,
 				8036F9A625EBDABE0008201A /* PhotoAnnotation.swift */,
@@ -536,7 +536,7 @@
 				8036F9A225EBB4310008201A /* SourceOfLocation.swift in Sources */,
 				805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */,
 				8036F96425E820BF0008201A /* MapNavigationController.swift in Sources */,
-				8036F99325EB908A0008201A /* ChoosedPhotoPopUP.swift in Sources */,
+				8036F99325EB908A0008201A /* PopUpWindowView.swift in Sources */,
 				8036F92025E81CB70008201A /* MapViewController.swift in Sources */,
 				8036F96A25EAA1420008201A /* Photo.swift in Sources */,
 				8036F9B625ED321F0008201A /* MapViewControllerDelegate.swift in Sources */,

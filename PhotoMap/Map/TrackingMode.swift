@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum TrackingMode {
     case follow, discover
 }

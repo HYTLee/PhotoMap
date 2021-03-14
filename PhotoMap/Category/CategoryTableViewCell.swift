@@ -7,10 +7,11 @@
 
 import UIKit
 
+// Cell for category table view
 class CountryTableViewCell: UITableViewCell {
     
+    //MARK: Set variables
     let categoryNameLabel = UILabel()
-    
     let circleView = UIView(frame: CGRect(x: 210, y: 10, width: 50, height: 50))
 
     override func awakeFromNib() {
@@ -31,6 +32,7 @@ class CountryTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    //MARK: Set UI elements and their constraints
     func setCaseLabel() {
         categoryNameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(categoryNameLabel)

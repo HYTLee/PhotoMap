@@ -11,8 +11,10 @@ import RealmSwift
 import CoreLocation
 import FirebaseDatabase
 
+// View Controller for PopUpWindowView
 class PopUpWindow: UIViewController {
     
+    // MARK: Set variables
     private let database = Database.database().reference()
     let popUpWindowView = PopUpWindowView()
     let dateFormatter = DateFormattering()
@@ -26,6 +28,7 @@ class PopUpWindow: UIViewController {
         modalPresentationStyle = .overFullScreen
         
         popUpWindowView.popupImage.image = image
+        addTapGestureToImageView()
 
         self.view = popUpWindowView 
     }
@@ -34,6 +37,20 @@ class PopUpWindow: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Set gesture recognizer
+    func addTapGestureToImageView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        popUpWindowView.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        let fullPhotoViewController = FullPhotoViewController()
+        fullPhotoViewController.fullPhotoImageView.image = popUpWindowView.popupImage.image
+        self.present(fullPhotoViewController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: Working with realm
     func addNewPhotoRecordToRealm()  {
         let realm = try! Realm()
         try! realm.write{
@@ -53,9 +70,9 @@ class PopUpWindow: UIViewController {
           }
     }
     
+    // MARK: Working with firebase
     func addNewPhotoToFirebase()  {
         let uuid = UUID().uuidString
-                
         let newPhotoRecord: [String: Any] = [
             "imageName": imageName ?? "",
             "imageDescription": popUpWindowView.popupTextView.text ?? "",
@@ -64,6 +81,17 @@ class PopUpWindow: UIViewController {
             "created": dateFormatter.converDateForFirebase(Date()),
             "category" : popUpWindowView.category.name
         ]
-        database.child(uuid).setValue(newPhotoRecord)
+        database.child("PhotoKey").child(uuid).setValue(newPhotoRecord)
+    }
+    
+    func getAllFireBaseKeys()  {
+        database.child("PhotoKey").observe(.value) { [self] (snapshot) in
+            for child in snapshot.children {
+                let valueD = child as! DataSnapshot
+                keysForFirebase.append(valueD.key)
+                print(keysForFirebase)
+
+            }
+        }
     }
 }

@@ -8,12 +8,12 @@
 import UIKit
 import RealmSwift
 
-
+// TimeLine View Controller
 class TimelineViewController: UIViewController {
     
+    // MARK: Set variables
     private let imageLoader = ImageLoader()
     private var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 250, height: 20))
-
     private let defaults = UserDefaults.standard
     private var filteredCategories: [String] = [""]
     private var photosFromReal = try! Realm().objects(Photo.self)
@@ -38,51 +38,12 @@ class TimelineViewController: UIViewController {
         self.filterPhotosForTimeLine()
         self.timeLineTableView.reloadData()
         }
-    
+  
+    // MARK: Set UI elements and their constraints
     private func setSearchBar() {
         self.searchBar.placeholder = "Filter photos"
         self.searchBar.delegate = self
 
-    }
-    
-    private func fullFilltimeLinePhotos(){
-        photosForTimeLine = []
-        self.readCategoriesFormUserDefaults()
-        for photo in photos {
-            let timelinePhoto = TimeLinePhoto(photo: photo)
-            for category in filteredCategories {
-                if timelinePhoto.photo.category == category {
-                    photosForTimeLine.append(timelinePhoto)
-                }
-            }
-        }
-    }
-    
-    private func readCategoriesFormUserDefaults()  {
-        filteredCategories = []
-        filteredCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
-    }
-    
-    private func setNavigationBar()  {
-        self.setSearchBar()
-        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        self.navigationItem.leftBarButtonItem = leftNavBarButton
-        let category = UIBarButtonItem(title: "Category", style: .done, target: self, action: #selector(openCategoriesScreen))
-        navigationItem.rightBarButtonItem = category
-            }
-    
-    @objc func openCategoriesScreen(){
-        let categoryViewController = CategoryViewController()
-        categoryViewController.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(categoryViewController, animated: true)
-    }
-    
-    func appendPhotosArray()  {
-        photos = []
-        for photo in photosFromReal {
-            photos.append(photo)
-        }
-        photos.sort { $0.created > $1.created }
     }
     
     func setTableView()  {
@@ -102,6 +63,47 @@ class TimelineViewController: UIViewController {
         ])
     }
     
+    private func setNavigationBar()  {
+        self.setSearchBar()
+        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        self.navigationItem.leftBarButtonItem = leftNavBarButton
+        let category = UIBarButtonItem(title: "Category", style: .done, target: self, action: #selector(openCategoriesScreen))
+        navigationItem.rightBarButtonItem = category
+            }
+    
+    @objc func openCategoriesScreen(){
+        let categoryViewController = CategoryViewController()
+        categoryViewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(categoryViewController, animated: true)
+    }
+    
+    //MARK: Obtainig data from realm data base and filtrating this data
+    private func readCategoriesFormUserDefaults()  {
+        filteredCategories = []
+        filteredCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
+    }
+    
+    func appendPhotosArray()  {
+        photos = []
+        for photo in photosFromReal {
+            photos.append(photo)
+        }
+        photos.sort { $0.created > $1.created }
+    }
+    
+    private func fullFilltimeLinePhotos(){
+        photosForTimeLine = []
+        self.readCategoriesFormUserDefaults()
+        for photo in photos {
+            let timelinePhoto = TimeLinePhoto(photo: photo)
+            for category in filteredCategories {
+                if timelinePhoto.photo.category == category {
+                    photosForTimeLine.append(timelinePhoto)
+                }
+            }
+        }
+    }
+    
     func filterPhotosForTimeLine()  {
         self.timeLineFilteredPhotos = [:]
         self.monthAndYearDates = []
@@ -118,7 +120,7 @@ class TimelineViewController: UIViewController {
     }
 }
 
-
+//MARK: Setting data for table view
 extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timeLineFilteredPhotos[monthAndYearDates[section]]?.count ?? 0
@@ -162,6 +164,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: Setting method to filtrate table view while searching via searbar
 extension TimelineViewController: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

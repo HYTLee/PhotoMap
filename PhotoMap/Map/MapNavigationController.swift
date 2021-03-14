@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Navigation controller for Map view
 class MapNavigationController: UINavigationController {
 
     override func viewDidLoad() {

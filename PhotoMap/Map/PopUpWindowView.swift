@@ -10,14 +10,13 @@ import UIKit
 import RealmSwift
 import CoreLocation
 
+// Settings of view that appear while user chooses photo from galery
 class PopUpWindowView: UIView, UITextViewDelegate {
     
+    // MARK: Set variables
     var categories = try! Realm().objects(Category.self)
-
     var category = Category()
-    
     private let dateFormatter = DateFormattering()
-    
     let popupView = UIView(frame: CGRect.zero)
     let popupImage = UIImageView(frame: CGRect.zero)
     let popupDateLabel = UILabel(frame: CGRect.zero)
@@ -27,7 +26,7 @@ class PopUpWindowView: UIView, UITextViewDelegate {
     let popupCancelButton = UIButton(frame: CGRect.zero)
     let BorderWidth: CGFloat = 2.0
 
-    
+    // MARK: Set all UI elements and theis constraints
     init() {
         super.init(frame: CGRect.zero)
         
@@ -66,7 +65,7 @@ class PopUpWindowView: UIView, UITextViewDelegate {
         popupPicker.delegate = self
         popupPicker.backgroundColor = .lightGray
         
-        
+    
         popupView.addSubview(popupImage)
         popupView.addSubview(popupDateLabel)
         popupView.addSubview(popupTextView)
@@ -145,16 +144,16 @@ class PopUpWindowView: UIView, UITextViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Working with textView delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
                 textView.text = nil
                 textView.textColor = UIColor.black
             }
     }
-    
 }
 
-
+// MARK: Working with PickerView
 extension PopUpWindowView: UIPickerViewDataSource, UIPickerViewDelegate{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

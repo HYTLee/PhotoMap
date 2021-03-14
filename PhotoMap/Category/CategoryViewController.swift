@@ -8,9 +8,11 @@
 import UIKit
 import RealmSwift
 
+// View Controller that shows while user wants to filter photos by specific category
 class CategoryViewController: UIViewController {
     
-   private let defaults = UserDefaults.standard
+    //MARK: Set variables
+    private let defaults = UserDefaults.standard
     let categoryTableView = UITableView(frame: CGRect.zero)
     var categories = try! Realm().objects(Category.self)
     var choosedCategories = [""]
@@ -29,7 +31,7 @@ class CategoryViewController: UIViewController {
         self.setSelectedRowsAfterReloadingViewController()
     }
     
-    
+    //MARK: Set UI elements and their constraints
     func setTableView()  {
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
         categoryTableView.delegate = self
@@ -59,7 +61,7 @@ class CategoryViewController: UIViewController {
         saveRowsToUserDefaults()
     }
     
-    
+    //MARK: Working with user defaults
     func saveRowsToUserDefaults()  {
         defaults.setValue(choosedRows, forKey: "rows")
         defaults.setValue(choosedCategories, forKey: "categories")
@@ -79,7 +81,7 @@ class CategoryViewController: UIViewController {
     }
 }
 
-
+//MARK: Set data for categories table view
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         categories.count
