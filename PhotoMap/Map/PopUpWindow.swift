@@ -55,9 +55,7 @@ class PopUpWindow: UIViewController {
     
     func addNewPhotoToFirebase()  {
         let uuid = UUID().uuidString
-        
-        self.saveKey(keyToPhoto: uuid)
-        
+                
         let newPhotoRecord: [String: Any] = [
             "imageName": imageName ?? "",
             "imageDescription": popUpWindowView.popupTextView.text ?? "",
