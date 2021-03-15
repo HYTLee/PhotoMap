@@ -12,10 +12,10 @@ class FullPhotoViewController: UIViewController {
     
     // MARK: setting variables
     let fullPhotoImageView = UIImageView(frame: CGRect.zero)
-    let viewForDescription = UIView(frame: CGRect.zero)
-    let scrollView = UIScrollView(frame: CGRect.zero)
-    let desciptionLabel = UILabel(frame: CGRect.zero)
-    let dateLabel = UILabel(frame: CGRect.zero)
+    private let viewForDescription = UIView(frame: CGRect.zero)
+    private let scrollView = UIScrollView(frame: CGRect.zero)
+    private let desciptionLabel = UILabel(frame: CGRect.zero)
+    private let dateLabel = UILabel(frame: CGRect.zero)
     var photo: Photo? = nil
     
     private let dateFormatter = DateFormattering()
@@ -130,7 +130,7 @@ class FullPhotoViewController: UIViewController {
     }
     
     // Hide all view except image view by taping on image view 
-    @objc func handleTap() {
+    @objc private func handleTap() {
         switch viewForDescription.isHidden {
         case true:
             viewForDescription.isHidden = false

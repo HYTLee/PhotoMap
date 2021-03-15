@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             emailTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
-            emailTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 70),
+            emailTextField.topAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -200),
             emailTextField.widthAnchor.constraint(equalToConstant: 240),
             emailTextField.heightAnchor.constraint(equalToConstant: 50)
         ])

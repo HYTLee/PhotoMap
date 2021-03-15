@@ -18,23 +18,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     private let defaults = UserDefaults.standard
     private let imageLoader = ImageLoader()
     private let imageResizer = ImageResizer()
-    let mapView = MKMapView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
-    var locationManager: CLLocationManager?
-    var choosedImage: UIImage?
-    var choosedLocation: CLLocation?
-    var photos = try! Realm().objects(Photo.self)
-    var popUpWindow =  PopUpWindow(image: UIImage(named: "tree")!)
-    var filteredCategories: [String] = [""]
-    let centerOfCurrentLocationImage = UIImageView(frame: CGRect.zero)
-    var trackingMode: TrackingMode = .discover
+    private let mapView = MKMapView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+    private var locationManager: CLLocationManager?
+    private var choosedImage: UIImage?
+    private var choosedLocation: CLLocation?
+    private var photos = try! Realm().objects(Photo.self)
+    private var popUpWindow =  PopUpWindow(image: UIImage(named: "tree")!)
+    private var filteredCategories: [String] = [""]
+    private let centerOfCurrentLocationImage = UIImageView(frame: CGRect.zero)
+    private var trackingMode: TrackingMode = .discover
     
     // Bar button item to change after interraction
-    var followType = UIBarButtonItem()
-    var discoveryType = UIBarButtonItem()
-    var camera = UIBarButtonItem()
+    private var followType = UIBarButtonItem()
+    private var discoveryType = UIBarButtonItem()
+    private var camera = UIBarButtonItem()
     
-    let realm = try! Realm()
-    lazy var categories: Results<Category> = { self.realm.objects(Category.self) }()
+    private let realm = try! Realm()
+    private lazy var categories: Results<Category> = { self.realm.objects(Category.self) }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         self.checkForTrackingMode()
     }
     
-    func setNavigationBar()  {
+    private func setNavigationBar()  {
         followType = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(changeTypeOfMap))
         discoveryType = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(changeTypeOfMap))
         camera = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(openCamera))
@@ -79,11 +79,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         navigationItem.leftBarButtonItem = categoryButton
     }
     
-    @objc func openCamera(){
+    @objc private func openCamera(){
         self.openSourceForPhotoAlert(sourceOfLocation: .curentLocation)
     }
     
-    @objc func openCategoryViewController(){
+    @objc private func openCategoryViewController(){
         let categoryViewController = CategoryViewController()
         categoryViewController.hidesBottomBarWhenPushed = true
         categoryViewController.delegate = self
@@ -105,13 +105,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     // MARK: Set  gestures
-    func tapHandlerInit()  {
+    private func tapHandlerInit()  {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleTap))
             gestureRecognizer.delegate = self
             mapView.addGestureRecognizer(gestureRecognizer)
     }
     
-    @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
+    @objc private func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
         let location = gestureRecognizer.location(in: mapView)
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
         self.choosedLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -119,7 +119,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     // MARK: Set tracking mode
-    func checkForTrackingMode()  {
+    private func checkForTrackingMode()  {
         switch trackingMode {
         case .follow:
             centerOfCurrentLocationImage.isHidden = false
@@ -131,7 +131,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
         }
     }
     
-    @objc func changeTypeOfMap(){
+    @objc private func changeTypeOfMap(){
         if trackingMode == .discover {
             trackingMode = .follow
             self.checkForTrackingMode()
@@ -146,7 +146,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     
     
     // MARK: Set location manager and setup location
-    private func determineCurrentLocation() {
+    private  func determineCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
@@ -190,7 +190,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     // MARK: Working with map annotations
-    func updateAnnotations()  {
+    private func updateAnnotations()  {
         mapView.removeAnnotations(mapView.annotations)
         photos = try! Realm().objects(Photo.self)
         if filteredCategories != [""]{
@@ -214,7 +214,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
     }
     
     // MARK: Working with photo chooser
-    func openSourceForPhotoAlert(sourceOfLocation: SourceOfLocation)  {
+    private func openSourceForPhotoAlert(sourceOfLocation: SourceOfLocation)  {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let openCameraButton = UIAlertAction(title: "Open Camera", style: .default) { (_) in
             self.showImagePickerController(sourceType: .camera, sourceOfLocation: sourceOfLocation)
@@ -239,7 +239,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UIGestureR
 
 extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     // MARK: Working with image picker
-    func showImagePickerController(sourceType: UIImagePickerController.SourceType, sourceOfLocation: SourceOfLocation)  {
+    private func showImagePickerController(sourceType: UIImagePickerController.SourceType, sourceOfLocation: SourceOfLocation)  {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -276,11 +276,11 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
         }
     }
     
-    @objc func cancelPopUPWithoutSaving(){
+    @objc private func cancelPopUPWithoutSaving(){
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func okActionOnPopUp(){
+    @objc private func okActionOnPopUp(){
         popUpWindow.addNewPhotoRecordToRealm()
         DispatchQueue.global(qos: .utility).async { [self] in
             popUpWindow.addNewPhotoToFirebase()

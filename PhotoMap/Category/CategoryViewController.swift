@@ -13,10 +13,10 @@ class CategoryViewController: UIViewController {
     
     //MARK: Set variables
     private let defaults = UserDefaults.standard
-    let categoryTableView = UITableView(frame: CGRect.zero)
-    var categories = try! Realm().objects(Category.self)
-    var choosedCategories = [""]
-    var choosedRows: [Int] = []
+    private let categoryTableView = UITableView(frame: CGRect.zero)
+    private var categories = try! Realm().objects(Category.self)
+    private var choosedCategories = [""]
+    private var choosedRows: [Int] = []
     weak var delegate: MapViewControllerDelegate?
 
 
@@ -32,7 +32,7 @@ class CategoryViewController: UIViewController {
     }
     
     //MARK: Set UI elements and their constraints
-    func setTableView()  {
+    private func setTableView()  {
         categoryTableView.translatesAutoresizingMaskIntoConstraints = false
         categoryTableView.delegate = self
         categoryTableView.allowsMultipleSelection = true
@@ -48,31 +48,31 @@ class CategoryViewController: UIViewController {
         ])
     }
     
-    func setNavigationBar(){
+    private func setNavigationBar(){
         self.navigationItem.title = "Categories"
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    @objc func doneAction(){
+    @objc private func doneAction(){
         delegate?.filterAnnotations(categories: choosedCategories)
         self.navigationController?.popViewController(animated: true)
         saveRowsToUserDefaults()
     }
     
     //MARK: Working with user defaults
-    func saveRowsToUserDefaults()  {
+    private func saveRowsToUserDefaults()  {
         defaults.setValue(choosedRows, forKey: "rows")
         defaults.setValue(choosedCategories, forKey: "categories")
     }
     
-    func readRowsFormUserDefaults()  {
+    private func readRowsFormUserDefaults()  {
         choosedRows = defaults.object(forKey:"rows") as? [Int] ?? []
         choosedCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
     }
     
-    func setSelectedRowsAfterReloadingViewController()  {
+    private func setSelectedRowsAfterReloadingViewController()  {
         if choosedRows != []{
             for row in choosedRows {
                 categoryTableView.selectRow(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .top)

@@ -16,7 +16,7 @@ class MapNavigationController: UINavigationController {
     }
     
 
-    func addSubViews()  {
+    private func addSubViews()  {
         viewControllers = [MapViewController()]
     }
 

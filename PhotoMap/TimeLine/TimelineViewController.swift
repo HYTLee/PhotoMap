@@ -20,9 +20,9 @@ class TimelineViewController: UIViewController {
     private var photos:[Photo] = []
     private let timeLineTableView = UITableView(frame: CGRect.zero)
     private let dateFormatter = DateFormattering()
-    var photosForTimeLine: [TimeLinePhoto] = []
-    var timeLineFilteredPhotos:[String:[TimeLinePhoto]] = [:]
-    var monthAndYearDates: [String] = []
+    private var photosForTimeLine: [TimeLinePhoto] = []
+    private var timeLineFilteredPhotos:[String:[TimeLinePhoto]] = [:]
+    private var monthAndYearDates: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class TimelineViewController: UIViewController {
 
     }
     
-    func setTableView()  {
+    private func setTableView()  {
         timeLineTableView.translatesAutoresizingMaskIntoConstraints = false
         timeLineTableView.delegate = self
         timeLineTableView.allowsMultipleSelection = true
@@ -71,7 +71,7 @@ class TimelineViewController: UIViewController {
         navigationItem.rightBarButtonItem = category
             }
     
-    @objc func openCategoriesScreen(){
+    @objc private func openCategoriesScreen(){
         let categoryViewController = CategoryViewController()
         categoryViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(categoryViewController, animated: true)
@@ -83,7 +83,7 @@ class TimelineViewController: UIViewController {
         filteredCategories = defaults.object(forKey: "categories") as? [String] ?? [""]
     }
     
-    func appendPhotosArray()  {
+    private func appendPhotosArray()  {
         photos = []
         for photo in photosFromReal {
             photos.append(photo)
@@ -104,7 +104,7 @@ class TimelineViewController: UIViewController {
         }
     }
     
-    func filterPhotosForTimeLine()  {
+    private func filterPhotosForTimeLine()  {
         self.timeLineFilteredPhotos = [:]
         self.monthAndYearDates = []
         for photo in photosForTimeLine {
@@ -148,7 +148,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       return tableView.dataSource?.tableView(tableView, numberOfRowsInSection: section) == 0 ? nil: monthAndYearDates[section]
+        return tableView.dataSource?.tableView(tableView, numberOfRowsInSection: section) == 0 ? nil: monthAndYearDates[section]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

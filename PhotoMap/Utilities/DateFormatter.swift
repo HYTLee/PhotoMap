@@ -18,7 +18,7 @@ class DateFormattering {
     
     func convertDateToMYFormat(_ date: Date) -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-yyyy"
+        dateFormatter.dateFormat = "MMMM - yyyy"
         return dateFormatter.string(from: date)
     }
     
@@ -46,5 +46,6 @@ class DateFormattering {
         dateFormatter.dateFormat = "MMMM dd, yyyy - HH:mm a"
         return dateFormatter.string(from: date)
     }
+
 }
 
