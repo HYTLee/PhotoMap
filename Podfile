@@ -9,7 +9,7 @@ target 'PhotoMap' do
     pod 'RealmSwift'
     pod'Firebase/Core'
     pod 'Firebase/Database'
-
+    pod 'Firebase/Auth'
 
   target 'PhotoMapTests' do
     inherit! :search_paths

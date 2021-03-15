@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0316529FCF46F65217EB0897 /* Pods_PhotoMap_PhotoMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */; };
+		8033EBAA25FFD266001C7998 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033EBA925FFD266001C7998 /* LoginViewController.swift */; };
 		8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91B25E81CB70008201A /* AppDelegate.swift */; };
 		8036F91E25E81CB70008201A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91D25E81CB70008201A /* SceneDelegate.swift */; };
 		8036F92025E81CB70008201A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036F91F25E81CB70008201A /* MapViewController.swift */; };
@@ -69,6 +70,7 @@
 		6203967C79E3E5402E894777 /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		674FB78FC55166415100C728 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		76A855DB2D3A75E878839E26 /* Pods_PhotoMap_PhotoMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap_PhotoMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8033EBA925FFD266001C7998 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8036F91825E81CB70008201A /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8036F91B25E81CB70008201A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8036F91D25E81CB70008201A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8033EBA825FFD24F001C7998 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8033EBA925FFD266001C7998 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		8036F90F25E81CB70008201A = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +189,8 @@
 		8036F91A25E81CB70008201A /* PhotoMap */ = {
 			isa = PBXGroup;
 			children = (
-				80DA183125FE314D00DD3E63 /* TBD */,
+				8033EBA825FFD24F001C7998 /* Login */,
+				80DA183125FE314D00DD3E63 /* Logout */,
 				80DA17FF25FD0B1F00DD3E63 /* Utilities */,
 				80DA17EA25FCBBEA00DD3E63 /* FullPhotoView */,
 				8036F96825EAA12D0008201A /* Map */,
@@ -273,12 +284,12 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		80DA183125FE314D00DD3E63 /* TBD */ = {
+		80DA183125FE314D00DD3E63 /* Logout */ = {
 			isa = PBXGroup;
 			children = (
 				8036F95E25E81E6A0008201A /* MoreViewController.swift */,
 			);
-			path = TBD;
+			path = Logout;
 			sourceTree = "<group>";
 		};
 		94FE73B8871B130C535BC6D6 /* Frameworks */ = {
@@ -530,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8033EBAA25FFD266001C7998 /* LoginViewController.swift in Sources */,
 				8036F95F25E81E6A0008201A /* MoreViewController.swift in Sources */,
 				8050AB4E25FB714E00C23C02 /* TimeLineNavigationController.swift in Sources */,
 				8036F98625EAC1B80008201A /* Category.swift in Sources */,
