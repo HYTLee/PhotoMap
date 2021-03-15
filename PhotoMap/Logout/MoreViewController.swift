@@ -41,7 +41,7 @@ class MoreViewController: UIViewController {
         let firebaseAuth = Auth.auth()
     do {
         try firebaseAuth.signOut()
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     } catch let signOutError as NSError {
         print ("Error signing out: %@", signOutError)
         self.showErrorAlert(message: "\(signOutError)")

@@ -18,12 +18,17 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
         self.setLoginTextField()
         self.setPasswordTextField()
         self.setLoginButton()
         self.setRegistrationButton()
         self.setSkipLoginButton()
+        self.hideNavigationBar()
+    }
+    
+    private func hideNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = true
     }
     
    private func setLoginTextField()  {
@@ -109,9 +114,7 @@ class LoginViewController: UIViewController {
                 self?.showErrorAlert(message: error?.localizedDescription ?? "Unknown error")
             }
             if authResult != nil {
-                let tabBarController = TabBarController()
-                tabBarController.modalPresentationStyle = .overCurrentContext
-                self?.present(tabBarController, animated: true, completion: nil)
+                self?.pushTabBarController()
             }
         }
     }
@@ -139,8 +142,11 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func skipLogin()  {
+        self.pushTabBarController()
+    }
+    
+    private func pushTabBarController() {
         let tabBarController = TabBarController()
-        tabBarController.modalPresentationStyle = .overCurrentContext
-        self.present(tabBarController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 }

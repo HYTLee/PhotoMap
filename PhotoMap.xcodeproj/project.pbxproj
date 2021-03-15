@@ -36,6 +36,7 @@
 		805D7BC225FA9158005244FB /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC125FA9158005244FB /* ImageLoader.swift */; };
 		805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BC625FA9F96005244FB /* ImageResizer.swift */; };
 		805D7BCC25FAA93C005244FB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D7BCB25FAA93C005244FB /* DateFormatter.swift */; };
+		8085DB6525FFE21B00ACAC04 /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8085DB6425FFE21B00ACAC04 /* LoginNavigationController.swift */; };
 		80DA17E625FBB2BF00DD3E63 /* TimelineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */; };
 		80DA17EC25FCBC0500DD3E63 /* FullPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */; };
 		80DA180125FD0B3600DD3E63 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */; };
@@ -104,6 +105,7 @@
 		805D7BC125FA9158005244FB /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		805D7BC625FA9F96005244FB /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
 		805D7BCB25FAA93C005244FB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		8085DB6425FFE21B00ACAC04 /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
 		80DA17E525FBB2BF00DD3E63 /* TimelineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCell.swift; sourceTree = "<group>"; };
 		80DA17EB25FCBC0500DD3E63 /* FullPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoViewController.swift; sourceTree = "<group>"; };
 		80DA180025FD0B3600DD3E63 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				8033EBA925FFD266001C7998 /* LoginViewController.swift */,
+				8085DB6425FFE21B00ACAC04 /* LoginNavigationController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				80DA180B25FD391400DD3E63 /* UIColorExtentions.swift in Sources */,
 				8036F9B125ED22C00008201A /* CategoryTableViewCell.swift in Sources */,
 				80DA17EC25FCBC0500DD3E63 /* FullPhotoViewController.swift in Sources */,
+				8085DB6525FFE21B00ACAC04 /* LoginNavigationController.swift in Sources */,
 				8036F92625E81CB70008201A /* PhotoMap.xcdatamodeld in Sources */,
 				805D7BC725FA9F96005244FB /* ImageResizer.swift in Sources */,
 				8036F91C25E81CB70008201A /* AppDelegate.swift in Sources */,
